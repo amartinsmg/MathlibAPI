@@ -1,0 +1,30 @@
+#!/bin/bash
+set -e
+
+REPO_URL=https://github.com/amartinsmg/MathAlgorithms.git
+BASE_DIR=`pwd`
+EXTERNAL_DIR="`pwd`/external"
+LIB_NAME="mathlib-c"
+DEST_DIR="`pwd`/src/main/resources"
+
+mkdir -p $EXTERNAL_DIR
+
+if [ ! -d "$EXTERNAL_DIR/$LIB_NAME" ]; then
+  echo "Cloning native repository..."
+  git clone $REPO_URL "$EXTERNAL_DIR/$LIB_NAME"
+else
+  echo "Updating native repository..."
+  cd "$EXTERNAL_DIR/$LIB_NAME" && git pull && cd $BASE_DIR
+fi
+
+cd "$EXTERNAL_DIR/$LIB_NAME"
+make clean
+make test > /dev/null
+echo "Compiling library..."
+make
+
+echo "Copying binaries to project resources..."
+mkdir -p $DEST_DIR
+cp lib/libmathlib.so $DEST_DIR
+
+echo "The library is in $DEST_DIR"
