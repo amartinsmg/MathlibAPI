@@ -1,4 +1,4 @@
-package com.amartinsmg;
+package com.amartinsmg.mathlibapi;
 
 /**
  * Hello world!

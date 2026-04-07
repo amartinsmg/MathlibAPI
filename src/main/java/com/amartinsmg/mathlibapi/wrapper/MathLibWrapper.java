@@ -1,4 +1,4 @@
-package com.amartinsmg;
+package com.amartinsmg.mathlibapi.wrapper;
 
 import com.sun.jna.Pointer;
 import com.sun.jna.ptr.LongByReference;

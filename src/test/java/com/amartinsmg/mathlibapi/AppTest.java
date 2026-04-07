@@ -1,7 +1,6 @@
-package com.amartinsmg;
+package com.amartinsmg.mathlibapi;
 
 import static org.junit.Assert.assertTrue;
-
 import org.junit.Test;
 
 /**
