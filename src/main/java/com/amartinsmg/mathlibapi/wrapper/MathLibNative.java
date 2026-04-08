@@ -85,7 +85,7 @@ public interface MathLibNative extends Library {
 
     double factoriallf(int num);
 
-    int gcd(int x, int y);
+    long gcd(long x, long y);
 
     double deg2rad(double degrees);
 
@@ -123,7 +123,7 @@ public interface MathLibNative extends Library {
 
     boolean isHappy(long num);
 
-    long lcm(int x, int y);
+    long lcm(long x, long y);
 
     double nPercentOfX(double x, double n);
 

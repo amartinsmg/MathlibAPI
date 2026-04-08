@@ -155,7 +155,7 @@ public class MathLibWrapper {
         return lib.factoriallf(num);
     }
 
-    public static int gcd(int x, int y) {
+    public static long gcd(long x, long y) {
         return lib.gcd(x, y);
     }
 
@@ -240,7 +240,7 @@ public class MathLibWrapper {
         return lib.isHappy(num);
     }
 
-    public static long lcm(int x, int y) {
+    public static long lcm(long x, long y) {
         return lib.lcm(x, y);
     }
 
