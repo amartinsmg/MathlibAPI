@@ -144,6 +144,9 @@ public class MathService {
         if (total <= 0) {
             throw new IllegalArgumentException("total must be > 0");
         }
+        if (selected < 0) {
+            throw new IllegalArgumentException("selected must be >= 0");
+        }
         if (selected > total) {
             throw new IllegalArgumentException("select must be <= total");
         }
@@ -157,6 +160,9 @@ public class MathService {
     public static double combinationSmart(int total, int selected) {
         if (total <= 0) {
             throw new IllegalArgumentException("total must be > 0");
+        }
+        if (selected < 0) {
+            throw new IllegalArgumentException("selected must be >= 0");
         }
         if (selected > total) {
             throw new IllegalArgumentException("select must be <= total");
@@ -284,6 +290,9 @@ public class MathService {
     }
 
     public static double poisson(double lambda, int x) {
+        if (x < 0) {
+            throw new IllegalArgumentException("x must be >= 0");
+        }
         return MathLibWrapper.poisson(lambda, x);
     }
 
