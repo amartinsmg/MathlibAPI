@@ -15,7 +15,7 @@ public class FunctionRegistryTest {
         FunctionRegistry registry = new FunctionRegistry();
         registry.register(MathService.class);
 
-        Method squareArea = registry.get("squareArea");
+        Method squareArea = registry.get("square-area");
 
         assertEquals("squareArea", squareArea.getName());
     }
@@ -31,13 +31,13 @@ public class FunctionRegistryTest {
     }
 
     @Test
-    public void testRetangleArea() throws Exception {
+    public void testRectangleArea() throws Exception {
         FunctionRegistry registry = new FunctionRegistry();
         registry.register(MathService.class);
 
-        Method retangleArea = registry.get("retangleArea");
+        Method rectangleArea = registry.get("rectangle-area");
 
-        Object result = retangleArea.invoke(null, 3, 5);
+        Object result = rectangleArea.invoke(null, 3, 5);
 
         assertEquals(15.0, result);
     }
