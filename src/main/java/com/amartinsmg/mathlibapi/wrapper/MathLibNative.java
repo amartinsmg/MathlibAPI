@@ -49,7 +49,7 @@ public interface MathLibNative extends Library {
 
     double pyramidArea(double baseArea, double basePerimeter, double slantHeight);
 
-    double regPyramidArea(double baseSide, int nOfBaseSides, double heigth);
+    double regPyramidArea(double baseSide, int nOfBaseSides, double height);
 
     double cylinderArea(double baseRadius, double height);
 

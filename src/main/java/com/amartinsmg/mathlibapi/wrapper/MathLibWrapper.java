@@ -83,8 +83,8 @@ public class MathLibWrapper {
         return lib.pyramidArea(baseArea, basePerimeter, slantHeight);
     }
 
-    public static double regPyramidArea(double baseSide, int nOfBaseSides, double heigth) {
-        return lib.regPyramidArea(baseSide, nOfBaseSides, heigth);
+    public static double regPyramidArea(double baseSide, int nOfBaseSides, double height) {
+        return lib.regPyramidArea(baseSide, nOfBaseSides, height);
     }
 
     public static double cylinderArea(double baseRadius, double height) {
