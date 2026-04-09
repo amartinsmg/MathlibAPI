@@ -1,5 +1,6 @@
 package com.amartinsmg.mathlibapi.schema;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 import java.util.ArrayList;
@@ -91,6 +92,19 @@ public class SchemaGenerator {
             return "boolean";
         }
 
-        return "unimplemented";
+        Map<String, Object> objSchema = new HashMap<>();
+        objSchema.put("type", "object");
+        
+        Map<String, Object> properties = new HashMap<>();
+        
+        for (Field f : type.getDeclaredFields()) {
+            f.setAccessible(true);
+            properties.put(f.getName(), formattType(f.getType()));
+        }
+        
+        objSchema.put("properies", properties);
+
+        return objSchema;
+
     }
 }
