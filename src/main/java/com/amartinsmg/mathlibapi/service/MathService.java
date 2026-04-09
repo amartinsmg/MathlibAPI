@@ -1,5 +1,6 @@
 package com.amartinsmg.mathlibapi.service;
 
+import com.amartinsmg.mathlibapi.model.Point;
 import com.amartinsmg.mathlibapi.schema.annotations.ApiFunction;
 import com.amartinsmg.mathlibapi.schema.annotations.ApiParam;
 import com.amartinsmg.mathlibapi.wrapper.MathLibWrapper;
@@ -274,12 +275,13 @@ public class MathService {
     }
 
     @ApiFunction(name = "midpoint-points", description = "Calculates the midpoint between two points")
-    public static double[] midpointPoints(
+    public static Point midpointPoints(
             @ApiParam(name = "a-x") double aX,
             @ApiParam(name = "a-y") double aY,
             @ApiParam(name = "b-x") double bX,
             @ApiParam(name = "b-y") double bY) {
-        return MathLibWrapper.midpointPoints(aX, aY, bX, bY);
+        double[] result = MathLibWrapper.midpointPoints(aX, aY, bX, bY);
+        return new Point(result[0], result[1]);
     }
 
     @ApiFunction(name = "slope-line", description = "Calculates the slope of a line passing through two points")
