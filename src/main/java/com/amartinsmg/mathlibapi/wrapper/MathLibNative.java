@@ -19,7 +19,7 @@ public interface MathLibNative extends Library {
 
     double squareArea(double side);
 
-    double retangleArea(double width, double length);
+    double rectangleArea(double width, double length);
 
     double rhombusArea(double largerDiagonal, double smallerDiagonal);
 

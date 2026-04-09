@@ -33,8 +33,8 @@ public class MathService {
     }
 
     @ApiFunction(name = "rectangle-area", description = "Calculates rectangle area")
-    public static double retangleArea(double width, double length) {
-        return MathLibWrapper.retangleArea(width, length);
+    public static double rectangleArea(double width, double length) {
+        return MathLibWrapper.rectangleArea(width, length);
     }
 
     @ApiFunction(name = "rhombus-area", description = "Calculates rhombus area")

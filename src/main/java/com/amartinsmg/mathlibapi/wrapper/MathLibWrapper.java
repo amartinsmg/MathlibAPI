@@ -23,8 +23,8 @@ public class MathLibWrapper {
         return lib.squareArea(side);
     }
 
-    public static double retangleArea(double width, double length) {
-        return lib.retangleArea(width, length);
+    public static double rectangleArea(double width, double length) {
+        return lib.rectangleArea(width, length);
     }
 
     public static double rhombusArea(double largerDiagonal, double smallerDiagonal) {
