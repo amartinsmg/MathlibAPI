@@ -167,12 +167,12 @@ public class MathLibWrapper {
         return lib.rad2deg(radians);
     }
 
-    public static double distancePoints(double a_x, double a_y, double b_x, double b_y) {
-        return lib.distancePoints(a_x, a_y, b_x, b_y);
+    public static double distancePoints(double aX, double aY, double bX, double bY) {
+        return lib.distancePoints(aX, aY, bX, bY);
     }
 
-    public static double[] midpointPoints(double a_x, double a_y, double b_x, double b_y) {
-        Pointer ptr = lib.midpointPoints(a_x, a_y, b_x, b_y);
+    public static double[] midpointPoints(double aX, double aY, double bX, double bY) {
+        Pointer ptr = lib.midpointPoints(aX, aY, bX, bY);
 
         double[] result = new double[2];
 
@@ -184,20 +184,20 @@ public class MathLibWrapper {
         return result;
     }
 
-    public static double slopeLine(double a_x, double a_y, double b_x, double b_y) {
-        return lib.slopeLine(a_x, a_y, b_x, b_y);
+    public static double slopeLine(double aX, double aY, double bX, double bY) {
+        return lib.slopeLine(aX, aY, bX, bY);
     }
 
-    public static double inclinationLine(double a_x, double a_y, double b_x, double b_y) {
-        return lib.inclinationLine(a_x, a_y, b_x, b_y);
+    public static double inclinationLine(double aX, double aY, double bX, double bY) {
+        return lib.inclinationLine(aX, aY, bX, bY);
     }
 
-    public static double lineYIntercept(double a_x, double a_y, double b_x, double b_y) {
-        return lib.lineYIntercept(a_x, a_y, b_x, b_y);
+    public static double lineYIntercept(double aX, double aY, double bX, double bY) {
+        return lib.lineYIntercept(aX, aY, bX, bY);
     }
 
-    public static double distancePointLine(double inclination, double yIntercept, double p_x, double p_y) {
-        return lib.distancePointLine(inclination, yIntercept, p_x, p_y);
+    public static double distancePointLine(double inclination, double yIntercept, double pX, double pY) {
+        return lib.distancePointLine(inclination, yIntercept, pX, pY);
     }
 
     public static double circlePerimeter(double radius) {

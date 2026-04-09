@@ -91,17 +91,17 @@ public interface MathLibNative extends Library {
 
     double rad2deg(double radians);
 
-    double distancePoints(double a_x, double a_y, double b_x, double b_y);
+    double distancePoints(double aX, double aY, double bX, double bY);
 
-    Pointer midpointPoints(double a_x, double a_y, double b_x, double b_y);
+    Pointer midpointPoints(double aX, double aY, double bX, double bY);
 
-    double slopeLine(double a_x, double a_y, double b_x, double b_y);
+    double slopeLine(double aX, double aY, double bX, double bY);
 
-    double inclinationLine(double a_x, double a_y, double b_x, double b_y);
+    double inclinationLine(double aX, double aY, double bX, double bY);
 
-    double lineYIntercept(double a_x, double a_y, double b_x, double b_y);
+    double lineYIntercept(double aX, double aY, double bX, double bY);
 
-    double distancePointLine(double inclination, double yIntercept, double p_x, double p_y);
+    double distancePointLine(double inclination, double yIntercept, double pX, double pY);
 
     double circlePerimeter(double radius);
 
