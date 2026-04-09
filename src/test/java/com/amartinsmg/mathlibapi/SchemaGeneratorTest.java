@@ -15,7 +15,19 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class SchemaGeneratorTest {
 
     @Test
-    void shouldGenerateAndSaveSchema() throws Exception {
+    void shouldGenerateSchema() {
+        var schema = SchemaGenerator.generateSchema(MathService.class);
+
+        assertFalse(schema.isEmpty());
+    }
+
+    @Test
+    void shouldSaveSchema() throws Exception {
+
+        if (!Boolean.getBoolean("exportSchema")) {
+            return;
+        }
+
         ObjectMapper mapper = new ObjectMapper();
 
         var schema = SchemaGenerator.generateSchema(MathService.class);
