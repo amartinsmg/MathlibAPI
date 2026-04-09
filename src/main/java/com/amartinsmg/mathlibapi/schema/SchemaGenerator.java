@@ -5,7 +5,6 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,8 +13,10 @@ import com.amartinsmg.mathlibapi.schema.annotations.ApiParam;
 
 public class SchemaGenerator {
 
-    public static List<Map<String, Object>> generateSchema(Class<?> clazz) {
-        List<Map<String, Object>> schema = new ArrayList<>();
+    private final ArrayList<FunctionSchema> schema;
+
+    public SchemaGenerator(Class<?> clazz) {
+        ArrayList<FunctionSchema> fnArr = new ArrayList<>();
 
         for (Method m : clazz.getDeclaredMethods()) {
             if (!m.isAnnotationPresent(ApiFunction.class)) {
@@ -24,39 +25,65 @@ public class SchemaGenerator {
 
             ApiFunction apiFunc = m.getAnnotation(ApiFunction.class);
 
-            Map<String, Object> func = new LinkedHashMap<>();
+            FunctionSchema func = new FunctionSchema();
 
             String name = apiFunc.name().isEmpty() ? m.getName() : apiFunc.name();
 
-            func.put("name", name);
+            func.name = name;
 
-            if (!apiFunc.description().isEmpty()) {
-                func.put("description", apiFunc.description());
-            }
+            func.description = apiFunc.description();
 
-            func.put("returnType", formattType(m.getReturnType()));
+            func.returnType = formattType(m.getReturnType());
 
-            func.put("params", formattParameters(m));
+            func.params = formattParameters(m);
 
-            schema.add(func);
+            fnArr.add(func);
         }
 
-        return schema;
+        this.schema = fnArr;
     }
 
-    protected static List<Map<String, Object>> formattParameters(Method m) {
-        List<Map<String, Object>> args = new ArrayList<>();
+    public List<Map<String, Object>> getSchema() {
+        List<Map<String, Object>> dict = new ArrayList<>();
+
+        for (FunctionSchema fn : this.schema) {
+            Map<String, Object> fnMap = new HashMap<>();
+
+            fnMap.put("name", fn.name);
+            fnMap.put("description", fn.description);
+            fnMap.put("returnType", fn.returnType);
+
+            List<Map<String, Object>> paramList = new ArrayList<>();
+
+            for (ParamSchema p : fn.params) {
+                Map<String, Object> paramMap = new HashMap<>();
+                paramMap.put("name", p.name);
+                paramMap.put("type", p.type);
+
+                paramList.add(paramMap);
+            }
+
+            fnMap.put("params", paramList);
+
+            dict.add(fnMap);
+        }
+
+        return dict;
+    }
+
+    protected static ArrayList<ParamSchema> formattParameters(Method m) {
+        ArrayList<ParamSchema> args = new ArrayList<>();
 
         Parameter[] params = m.getParameters();
 
         for (Parameter p : params) {
-            Map<String, Object> arg = new LinkedHashMap<>();
+            ParamSchema arg = new ParamSchema();
             ApiParam apiParam = p.getAnnotation(ApiParam.class);
             String name = (apiParam != null && !apiParam.name().isEmpty())
                     ? apiParam.name()
                     : p.getName();
-            arg.put("name", name);
-            arg.put("type", formattType(p.getType()));
+            arg.name = name;
+            arg.type = formattType(p.getType());
             args.add(arg);
         }
 
@@ -94,14 +121,14 @@ public class SchemaGenerator {
 
         Map<String, Object> objSchema = new HashMap<>();
         objSchema.put("type", "object");
-        
+
         Map<String, Object> properties = new HashMap<>();
-        
+
         for (Field f : type.getDeclaredFields()) {
             f.setAccessible(true);
             properties.put(f.getName(), formattType(f.getType()));
         }
-        
+
         objSchema.put("properies", properties);
 
         return objSchema;
