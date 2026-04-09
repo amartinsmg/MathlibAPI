@@ -11,13 +11,13 @@ public class FunctionRegistry {
     private final Map<String, Method> registry = new HashMap<>();
 
     public FunctionRegistry(Class<?> clazz) {
-        for (Method method : clazz.getDeclaredMethods()) {
-            if (method.isAnnotationPresent(ApiFunction.class)) {
-                ApiFunction apiFunc = method.getAnnotation(ApiFunction.class);
+        for (Method m : clazz.getDeclaredMethods()) {
+            if (m.isAnnotationPresent(ApiFunction.class)) {
+                ApiFunction apiFunc = m.getAnnotation(ApiFunction.class);
                 String name = apiFunc.name().isEmpty()
-                        ? method.getName()
+                        ? m.getName()
                         : apiFunc.name();
-                registry.put(name, method);
+                registry.put(name, m);
             }
         }
     }

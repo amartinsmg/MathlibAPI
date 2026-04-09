@@ -14,16 +14,16 @@ public class SchemaGenerator {
     public static List<Map<String, Object>> generateSchema(Class<?> clazz) {
         List<Map<String, Object>> schema = new ArrayList<>();
 
-        for (Method method : clazz.getDeclaredMethods()) {
-            if (!method.isAnnotationPresent(ApiFunction.class)) {
+        for (Method m : clazz.getDeclaredMethods()) {
+            if (!m.isAnnotationPresent(ApiFunction.class)) {
                 continue;
             }
 
-            ApiFunction apiFunc = method.getAnnotation(ApiFunction.class);
+            ApiFunction apiFunc = m.getAnnotation(ApiFunction.class);
 
             Map<String, Object> func = new LinkedHashMap<>();
 
-            String name = apiFunc.name().isEmpty() ? method.getName() : apiFunc.name();
+            String name = apiFunc.name().isEmpty() ? m.getName() : apiFunc.name();
 
             func.put("name", name);
 
@@ -31,11 +31,11 @@ public class SchemaGenerator {
                 func.put("description", apiFunc.description());
             }
 
-            func.put("returnType", method.getReturnType().getSimpleName());
+            func.put("returnType", m.getReturnType().getSimpleName());
 
             List<Map<String, Object>> args = new ArrayList<>();
 
-            Parameter[] params = method.getParameters();
+            Parameter[] params = m.getParameters();
 
             for (Parameter p : params) {
                 Map<String, Object> arg = new LinkedHashMap<>();
