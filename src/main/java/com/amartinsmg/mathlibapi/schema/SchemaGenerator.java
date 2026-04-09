@@ -3,11 +3,13 @@ package com.amartinsmg.mathlibapi.schema;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.amartinsmg.mathlibapi.schema.annotations.ApiFunction;
+import com.amartinsmg.mathlibapi.schema.annotations.ApiParam;
 
 public class SchemaGenerator {
 
@@ -31,24 +33,64 @@ public class SchemaGenerator {
                 func.put("description", apiFunc.description());
             }
 
-            func.put("returnType", m.getReturnType().getSimpleName());
+            func.put("returnType", formattType(m.getReturnType()));
 
-            List<Map<String, Object>> args = new ArrayList<>();
-
-            Parameter[] params = m.getParameters();
-
-            for (Parameter p : params) {
-                Map<String, Object> arg = new LinkedHashMap<>();
-                arg.put("name", p.getName());
-                arg.put("type", p.getType().getSimpleName());
-                args.add(arg);
-            }
-
-            func.put("params", args);
+            func.put("params", formattParameters(m));
 
             schema.add(func);
         }
 
         return schema;
+    }
+
+    protected static List<Map<String, Object>> formattParameters(Method m) {
+        List<Map<String, Object>> args = new ArrayList<>();
+
+        Parameter[] params = m.getParameters();
+
+        for (Parameter p : params) {
+            Map<String, Object> arg = new LinkedHashMap<>();
+            ApiParam apiParam = p.getAnnotation(ApiParam.class);
+            String name = (apiParam != null && !apiParam.name().isEmpty())
+                    ? apiParam.name()
+                    : p.getName();
+            arg.put("name", name);
+            arg.put("type", formattType(p.getType()));
+            args.add(arg);
+        }
+
+        return args;
+    }
+
+    protected static Object formattType(Class<?> type) {
+
+        if (type.isArray()) {
+            Map<String, Object> arraySchema = new HashMap<>();
+            arraySchema.put("type", "array");
+            arraySchema.put("items", formattType(type.getComponentType()));
+            return arraySchema;
+        }
+
+        if (type == int.class || type == Integer.class) {
+            return "int32";
+        }
+
+        if (type == long.class || type == Long.class) {
+            return "int64";
+        }
+
+        if (type == float.class || type == Float.class) {
+            return "float";
+        }
+
+        if (type == double.class || type == Double.class) {
+            return "double";
+        }
+
+        if (type == boolean.class || type == Boolean.class) {
+            return "boolean";
+        }
+
+        return "unimplemented";
     }
 }
