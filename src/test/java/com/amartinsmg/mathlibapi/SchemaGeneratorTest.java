@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +17,14 @@ public class SchemaGeneratorTest {
 
     @Test
     void shouldGenerateSchema() {
-        var schema = SchemaGenerator.generateSchema(MathService.class);
+        SchemaGenerator schema = new SchemaGenerator(MathService.class);
+
+        assertNotNull(schema);
+    }
+
+    @Test
+    void shoutGetSchema() {
+        var schema = new SchemaGenerator(MathService.class).getSchema();
 
         assertFalse(schema.isEmpty());
     }
@@ -24,13 +32,13 @@ public class SchemaGeneratorTest {
     @Test
     void shouldSaveSchema() throws Exception {
 
-        if (!Boolean.getBoolean("exportSchema")) {
-            return;
-        }
+        // if (!Boolean.getBoolean("exportSchema")) {
+        //     return;
+        // }
 
         ObjectMapper mapper = new ObjectMapper();
 
-        var schema = SchemaGenerator.generateSchema(MathService.class);
+        var schema =  new SchemaGenerator(MathService.class).getSchema();
 
         assertFalse(schema.isEmpty());
 
