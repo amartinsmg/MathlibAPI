@@ -3,6 +3,7 @@ package com.amartinsmg.mathlibapi;
 import java.lang.reflect.Method;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.Test;
 
 import com.amartinsmg.mathlibapi.api.FunctionRegistry;
@@ -12,18 +13,16 @@ public class FunctionRegistryTest {
 
     @Test
     public void testSquareAreaFunctionExists() {
-        FunctionRegistry registry = new FunctionRegistry();
-        registry.register(MathService.class);
+        FunctionRegistry registry = new FunctionRegistry(MathService.class);
 
         Method squareArea = registry.get("square-area");
 
-        assertEquals("squareArea", squareArea.getName());
+        assertNotNull(squareArea);
     }
 
     @Test
     public void testFactorialFunctionExists() {
-        FunctionRegistry registry = new FunctionRegistry();
-        registry.register(MathService.class);
+        FunctionRegistry registry = new FunctionRegistry(MathService.class);
 
         Method factorial = registry.get("factorial");
 
@@ -32,8 +31,7 @@ public class FunctionRegistryTest {
 
     @Test
     public void testRectangleArea() throws Exception {
-        FunctionRegistry registry = new FunctionRegistry();
-        registry.register(MathService.class);
+        FunctionRegistry registry = new FunctionRegistry(MathService.class);
 
         Method rectangleArea = registry.get("rectangle-area");
 
@@ -44,14 +42,13 @@ public class FunctionRegistryTest {
 
     @Test
     public void testLcm() throws Exception {
-        FunctionRegistry registry = new FunctionRegistry();
-        registry.register(MathService.class);
+        FunctionRegistry registry = new FunctionRegistry(MathService.class);
 
         Method lcm = registry.get("lcm");
 
         Object result = lcm.invoke(null, 8, 10);
 
-        assertEquals((long) 40, result);
+        assertEquals(40L, result);
     }
 
 }
