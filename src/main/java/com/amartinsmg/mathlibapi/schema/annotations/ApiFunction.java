@@ -1,4 +1,4 @@
-package com.amartinsmg.mathlibapi.annotation;
+package com.amartinsmg.mathlibapi.schema.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

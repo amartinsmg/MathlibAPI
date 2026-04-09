@@ -1,6 +1,6 @@
 package com.amartinsmg.mathlibapi.service;
 
-import com.amartinsmg.mathlibapi.annotation.ApiFunction;
+import com.amartinsmg.mathlibapi.schema.annotations.ApiFunction;
 import com.amartinsmg.mathlibapi.wrapper.MathLibWrapper;
 
 public class MathService {
