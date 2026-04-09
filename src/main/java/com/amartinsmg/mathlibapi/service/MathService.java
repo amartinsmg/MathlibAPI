@@ -27,17 +27,17 @@ public class MathService {
         return MathLibWrapper.triangleArea3(sideA, sideB, sideC);
     }
 
-    @ApiFunction(name = "square-area", description = "Calculates square area using the side length")
+    @ApiFunction(name = "square-area", description = "Calculates square area")
     public static double squareArea(double side) {
         return MathLibWrapper.squareArea(side);
     }
 
-    @ApiFunction(name = "rectangle-area", description = "Calculates rectangle area using width and length")
+    @ApiFunction(name = "rectangle-area", description = "Calculates rectangle area")
     public static double retangleArea(double width, double length) {
         return MathLibWrapper.retangleArea(width, length);
     }
 
-    @ApiFunction(name = "rhombus-area", description = "Calculates rhombus area using the larger and smaller diagonals")
+    @ApiFunction(name = "rhombus-area", description = "Calculates rhombus area")
     public static double rhombusArea(
             @ApiParam(name = "larger-diagonal") double largerDiagonal,
             @ApiParam(name = "smaller-diagonal") double smallerDiagonal) {
@@ -57,7 +57,7 @@ public class MathService {
         return MathLibWrapper.parallelogramArea2(sideA, sideB, angleBeetweenAB);
     }
 
-    @ApiFunction(name = "trapezoid-area", description = "Calculates trapezoid area using larger base, smaller base and height")
+    @ApiFunction(name = "trapezoid-area", description = "Calculates trapezoid area")
     public static double trapezoidArea(
             @ApiParam(name = "larger-base") double largerBase,
             @ApiParam(name = "smaller-base") double smallerBase,
@@ -65,14 +65,14 @@ public class MathService {
         return MathLibWrapper.trapezoidArea(largerBase, smallerBase, height);
     }
 
-    @ApiFunction(name = "regular-polygon-area", description = "Calculates regular polygon area using side length and number of sides")
+    @ApiFunction(name = "regular-polygon-area", description = "Calculates regular polygon area")
     public static double regPolygonArea(
             double side,
             @ApiParam(name = "number-of-sides") int nOfSides) {
         return MathLibWrapper.regPolygonArea(side, nOfSides);
     }
 
-    @ApiFunction(name = "circle-area", description = "Calculates circle area using the radius")
+    @ApiFunction(name = "circle-area", description = "Calculates circle area")
     public static double circleArea(double radius) {
         return MathLibWrapper.circleArea(radius);
     }
@@ -89,7 +89,7 @@ public class MathService {
         return MathLibWrapper.circularSectorArea2(arc, radius);
     }
 
-    @ApiFunction(name = "ellipse-area", description = "Calculates ellipse area using semi-major and semi-minor axes")
+    @ApiFunction(name = "ellipse-area", description = "Calculates ellipse area")
     public static double ellipseArea(
             @ApiParam(name = "semi-major-axis") double semiMajorAxis,
             @ApiParam(name = "semi-minor-axis") double semiMinorAxis) {
@@ -134,8 +134,8 @@ public class MathService {
     public static double regPyramidArea(
             @ApiParam(name = "base-side") double baseSide,
             @ApiParam(name = "number-of-base-sides") int nOfBaseSides,
-            double heigth) {
-        return MathLibWrapper.regPyramidArea(baseSide, nOfBaseSides, heigth);
+            double height) {
+        return MathLibWrapper.regPyramidArea(baseSide, nOfBaseSides, height);
     }
 
     @ApiFunction(name = "cylinder-area", description = "Calculates cylinder surface area")
