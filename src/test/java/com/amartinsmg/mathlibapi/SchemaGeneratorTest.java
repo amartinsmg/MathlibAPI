@@ -4,6 +4,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -30,6 +31,15 @@ public class SchemaGeneratorTest {
     }
 
     @Test
+    void shouldAccessFunction() {
+        var fn = new SchemaGenerator(MathService.class)
+                .getFunctionSchema("arrangement");
+
+        assertEquals("combinatorics", fn.namespace);
+        assertEquals("Calculates the arrangement of selecting items from a total", fn.description);
+    }
+
+    @Test
     void shouldSaveSchema() throws Exception {
 
         if (!Boolean.getBoolean("exportSchema")) {
@@ -38,7 +48,7 @@ public class SchemaGeneratorTest {
 
         ObjectMapper mapper = new ObjectMapper();
 
-        var schema =  new SchemaGenerator(MathService.class).getSchema();
+        var schema = new SchemaGenerator(MathService.class).getSchema();
 
         assertFalse(schema.isEmpty());
 
@@ -48,6 +58,5 @@ public class SchemaGeneratorTest {
                 .writeValue(path.toFile(), schema);
 
         assertTrue(Files.exists(path));
-
     }
 }
