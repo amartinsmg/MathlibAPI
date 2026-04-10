@@ -4,6 +4,7 @@ import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Map;
 
+import com.amartinsmg.mathlibapi.core.exceptions.ApiException;
 import com.amartinsmg.mathlibapi.core.schema.SchemaGenerator;
 import com.amartinsmg.mathlibapi.core.schema.SchemaValidator;
 import com.amartinsmg.mathlibapi.core.schema.models.FunctionSchema;
@@ -22,7 +23,7 @@ public class ApiCore {
         return schema.getSchema();
     }
 
-    public Object execEngine(String fn, Map<String, Object> args) throws Exception {
+    public Object execEngine(String fn, Map<String, Object> args) {
 
         Method m = dispatcher.get(fn);
 
@@ -32,8 +33,15 @@ public class ApiCore {
 
         Object[] convertedArgs = TypeConverter.convertArgs(fnSchema, args);
 
-        Object result = dispatcher.call(m, convertedArgs);
-
-        return TypeConverter.normalizeReturn(result);
+        try {
+            Object result = dispatcher.call(m, convertedArgs);
+            return TypeConverter.normalizeReturn(result);
+        } catch (Exception e) {
+            if (e instanceof ApiException ex) {
+                throw ex;
+            }
+            
+            throw new ApiException(500, "Exection error");
+        }
     }
 }
