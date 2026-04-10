@@ -346,7 +346,7 @@ public class MathService {
         return MathLibWrapper.distancePoints(aX, aY, bX, bY);
     }
 
-    @ApiFunction(name = "midpoint-points",
+    @ApiFunction(name = "midpoint",
             namespace = "geometry",
             description = "Calculates the midpoint between two points")
     public static Point midpointPoints(
