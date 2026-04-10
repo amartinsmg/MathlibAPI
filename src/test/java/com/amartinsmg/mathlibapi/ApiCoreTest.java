@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
 
-import com.amartinsmg.mathlibapi.api.ApiCore;
+import com.amartinsmg.mathlibapi.core.ApiCore;
 import com.amartinsmg.mathlibapi.service.MathService;
 
 public class ApiCoreTest {

@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
-import com.amartinsmg.mathlibapi.api.FunctionDispatcher;
+import com.amartinsmg.mathlibapi.core.FunctionDispatcher;
 import com.amartinsmg.mathlibapi.service.MathService;
 
 public class FunctionDispatcherTest {

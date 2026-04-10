@@ -1,10 +1,10 @@
-package com.amartinsmg.mathlibapi.api;
+package com.amartinsmg.mathlibapi.core;
 
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.amartinsmg.mathlibapi.api.schema.annotations.ApiFunction;
+import com.amartinsmg.mathlibapi.core.schema.annotations.ApiFunction;
 
 public class FunctionRegistry {
 

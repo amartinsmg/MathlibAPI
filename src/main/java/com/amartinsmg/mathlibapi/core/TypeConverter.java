@@ -1,4 +1,4 @@
-package com.amartinsmg.mathlibapi.api;
+package com.amartinsmg.mathlibapi.core;
 
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.amartinsmg.mathlibapi.api.schema.models.FunctionSchema;
+import com.amartinsmg.mathlibapi.core.schema.models.FunctionSchema;
 
 public class TypeConverter {
 

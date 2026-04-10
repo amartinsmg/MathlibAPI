@@ -1,4 +1,4 @@
-package com.amartinsmg.mathlibapi.api.schema.models;
+package com.amartinsmg.mathlibapi.core.schema.models;
 
 import java.util.ArrayList;
 

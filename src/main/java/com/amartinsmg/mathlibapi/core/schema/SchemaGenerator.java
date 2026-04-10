@@ -1,4 +1,4 @@
-package com.amartinsmg.mathlibapi.api.schema;
+package com.amartinsmg.mathlibapi.core.schema;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -8,10 +8,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.amartinsmg.mathlibapi.api.schema.annotations.ApiFunction;
-import com.amartinsmg.mathlibapi.api.schema.annotations.ApiParam;
-import com.amartinsmg.mathlibapi.api.schema.models.FunctionSchema;
-import com.amartinsmg.mathlibapi.api.schema.models.ParamSchema;
+import com.amartinsmg.mathlibapi.core.schema.annotations.ApiFunction;
+import com.amartinsmg.mathlibapi.core.schema.annotations.ApiParam;
+import com.amartinsmg.mathlibapi.core.schema.models.FunctionSchema;
+import com.amartinsmg.mathlibapi.core.schema.models.ParamSchema;
 
 public class SchemaGenerator {
 

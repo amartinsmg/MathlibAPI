@@ -1,4 +1,4 @@
-package com.amartinsmg.mathlibapi.api;
+package com.amartinsmg.mathlibapi.core;
 
 import java.lang.reflect.Method;
 

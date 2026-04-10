@@ -1,10 +1,10 @@
-package com.amartinsmg.mathlibapi.api.schema;
+package com.amartinsmg.mathlibapi.core.schema;
 
 import java.util.List;
 import java.util.Map;
 
-import com.amartinsmg.mathlibapi.api.schema.models.FunctionSchema;
-import com.amartinsmg.mathlibapi.api.schema.models.ParamSchema;
+import com.amartinsmg.mathlibapi.core.schema.models.FunctionSchema;
+import com.amartinsmg.mathlibapi.core.schema.models.ParamSchema;
 
 public class SchemaValidator {
 

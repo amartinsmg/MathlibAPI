@@ -1,12 +1,12 @@
-package com.amartinsmg.mathlibapi.api;
+package com.amartinsmg.mathlibapi.core;
 
 import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Map;
 
-import com.amartinsmg.mathlibapi.api.schema.SchemaGenerator;
-import com.amartinsmg.mathlibapi.api.schema.SchemaValidator;
-import com.amartinsmg.mathlibapi.api.schema.models.FunctionSchema;
+import com.amartinsmg.mathlibapi.core.schema.SchemaGenerator;
+import com.amartinsmg.mathlibapi.core.schema.SchemaValidator;
+import com.amartinsmg.mathlibapi.core.schema.models.FunctionSchema;
 
 public class ApiCore {
 
