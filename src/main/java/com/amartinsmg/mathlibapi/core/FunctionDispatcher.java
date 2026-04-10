@@ -2,6 +2,8 @@ package com.amartinsmg.mathlibapi.core;
 
 import java.lang.reflect.Method;
 
+import com.amartinsmg.mathlibapi.core.exceptions.FunctionNotFoundException;
+
 public class FunctionDispatcher {
 
     private final FunctionRegistry registry;
@@ -18,7 +20,7 @@ public class FunctionDispatcher {
         Method m = registry.get(fn);
 
         if (m == null) {
-            throw new RuntimeException("Function not found: " + fn);
+            throw new FunctionNotFoundException(fn);
         }
 
         return m;
