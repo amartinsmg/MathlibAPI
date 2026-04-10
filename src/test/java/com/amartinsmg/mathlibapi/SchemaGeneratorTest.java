@@ -32,9 +32,9 @@ public class SchemaGeneratorTest {
     @Test
     void shouldSaveSchema() throws Exception {
 
-        // if (!Boolean.getBoolean("exportSchema")) {
-        //     return;
-        // }
+        if (!Boolean.getBoolean("exportSchema")) {
+            return;
+        }
 
         ObjectMapper mapper = new ObjectMapper();
 
