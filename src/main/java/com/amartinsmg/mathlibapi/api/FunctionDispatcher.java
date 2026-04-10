@@ -6,17 +6,21 @@ public class FunctionDispatcher {
 
     private final FunctionRegistry registry;
 
-    public FunctionDispatcher(Class<?> clazz){
+    public FunctionDispatcher(Class<?> clazz) {
         this.registry = new FunctionRegistry(clazz);
     }
 
-    public Object call(String name, Object[] args) throws Exception {
-        Method m = registry.get(name);
+    public Object call(Method m, Object[] args) throws Exception {
+        return m.invoke(null, args);
+    }
 
-        if(m == null){
-            throw new RuntimeException("Function not found: " + name);
+    public Method get(String fn) {
+        Method m = registry.get(fn);
+
+        if (m == null) {
+            throw new RuntimeException("Function not found: " + fn);
         }
 
-        return m.invoke(null, args);
+        return m;
     }
 }
