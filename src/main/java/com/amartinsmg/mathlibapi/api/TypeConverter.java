@@ -8,7 +8,7 @@ import com.amartinsmg.mathlibapi.schema.FunctionSchema;
 
 public class TypeConverter {
 
-    public Object[] convertArgs(FunctionSchema fn, Map<String, Object> args) {
+    public static Object[] convertArgs(FunctionSchema fn, Map<String, Object> args) {
         int length = fn.params.size();
         Object[] arr = new Object[length];
         for (int i = 0; i < length; i++) {
@@ -19,7 +19,7 @@ public class TypeConverter {
         return arr;
     }
 
-    protected Object convertType(Object typeDef, Object arg) {
+    protected static Object convertType(Object typeDef, Object arg) {
         if (typeDef instanceof String type) {
             if (arg instanceof Number num) {
                 switch (type) {
