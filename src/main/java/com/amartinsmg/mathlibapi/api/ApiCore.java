@@ -25,9 +25,11 @@ public class ApiCore {
         Method m = dispatcher.get(fn);
 
         var fnSchema = schema.getFunctionSchema(fn);
-        
+
         SchemaValidator.validate(fnSchema, args);
 
-        return dispatcher.call(m, new Object[]{});
+        var convertedArgs = TypeConverter.convertArgs(fnSchema, args);
+
+        return dispatcher.call(m, convertedArgs);
     }
 }
