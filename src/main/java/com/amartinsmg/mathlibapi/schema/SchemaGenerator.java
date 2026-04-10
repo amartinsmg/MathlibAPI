@@ -13,10 +13,10 @@ import com.amartinsmg.mathlibapi.schema.annotations.ApiParam;
 
 public class SchemaGenerator {
 
-    private final ArrayList<FunctionSchema> schema;
+    private final Map<String, FunctionSchema> schema;
 
     public SchemaGenerator(Class<?> clazz) {
-        ArrayList<FunctionSchema> fnArr = new ArrayList<>();
+        Map<String, FunctionSchema> fnMap = new HashMap<>();
 
         for (Method m : clazz.getDeclaredMethods()) {
             if (!m.isAnnotationPresent(ApiFunction.class)) {
@@ -37,16 +37,16 @@ public class SchemaGenerator {
 
             func.params = formattParameters(m);
 
-            fnArr.add(func);
+            fnMap.put(name, func);
         }
 
-        this.schema = fnArr;
+        this.schema = fnMap;
     }
 
     public List<Map<String, Object>> getSchema() {
         List<Map<String, Object>> dict = new ArrayList<>();
 
-        for (FunctionSchema fn : this.schema) {
+        for (FunctionSchema fn : this.schema.values()) {
             Map<String, Object> fnMap = new HashMap<>();
 
             fnMap.put("name", fn.name);
@@ -69,6 +69,10 @@ public class SchemaGenerator {
         }
 
         return dict;
+    }
+
+    public FunctionSchema getFunctionSchema(String fn) {
+        return schema.get(fn);
     }
 
     protected static ArrayList<ParamSchema> formattParameters(Method m) {
