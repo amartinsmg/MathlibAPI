@@ -6,7 +6,7 @@ import java.util.Map;
 
 import com.amartinsmg.mathlibapi.schema.FunctionSchema;
 
-public class ConverterTypes {
+public class TypeConverter {
 
     public Object[] convertArgs(FunctionSchema fn, Map<String, Object> args) {
         int length = fn.params.size();
