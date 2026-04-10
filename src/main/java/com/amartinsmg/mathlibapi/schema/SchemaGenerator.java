@@ -31,6 +31,10 @@ public class SchemaGenerator {
 
             func.name = name;
 
+            func.namespace = apiFunc.namespace().isEmpty()
+                    ? func.name
+                    : apiFunc.namespace();
+
             func.description = apiFunc.description();
 
             func.returnType = formattType(m.getReturnType());
@@ -51,6 +55,7 @@ public class SchemaGenerator {
 
             fnMap.put("name", fn.name);
             fnMap.put("description", fn.description);
+            fnMap.put("namespace", fn.namespace);
             fnMap.put("returnType", fn.returnType);
 
             List<Map<String, Object>> paramList = new ArrayList<>();
