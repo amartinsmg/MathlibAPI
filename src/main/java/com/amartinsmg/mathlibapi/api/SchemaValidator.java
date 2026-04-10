@@ -1,5 +1,6 @@
 package com.amartinsmg.mathlibapi.api;
 
+import java.util.List;
 import java.util.Map;
 
 import com.amartinsmg.mathlibapi.schema.FunctionSchema;
@@ -8,13 +9,16 @@ import com.amartinsmg.mathlibapi.schema.ParamSchema;
 public class SchemaValidator {
 
     public static void validate(
-            FunctionSchema fnSchema,
+            FunctionSchema fn,
             Map<String, Object> args
     ) {
-        if (args.values().size() != fnSchema.params.size()) {
-            throw new RuntimeException("Invalid number of arguments");
+        if (args.size() != fn.params.size()) {
+            throw new RuntimeException("Unexpected arguments");
         }
-        for (ParamSchema p : fnSchema.params) {
+        for (ParamSchema p : fn.params) {
+            if (!args.containsKey(p.name)) {
+                throw new RuntimeException("Missing argument: " + p.name);
+            }
             Object typeDef = p.type;
             if (!isValidType(typeDef, args.get(p.name))) {
                 throw new RuntimeException(
@@ -49,16 +53,16 @@ public class SchemaValidator {
             String type = (String) map.get("type");
             switch (type) {
                 case "array":
-                    if (!(arg instanceof Object[])) {
+                    if (!(arg instanceof List<?> list)) {
                         return false;
                     }
-                    Object[] arr = (Object[]) arg;
                     Object itemsType = map.get("items");
-                    for (Object item : arr) {
+                    for (Object item : list) {
                         if (!isValidType(itemsType, item)) {
                             return false;
                         }
                     }
+                    return true;
                 case "object":
                     if (!(arg instanceof Map)) {
                         return false;
