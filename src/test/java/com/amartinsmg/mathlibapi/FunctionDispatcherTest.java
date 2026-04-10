@@ -1,5 +1,7 @@
 package com.amartinsmg.mathlibapi;
 
+import java.lang.reflect.Method;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -15,7 +17,7 @@ public class FunctionDispatcherTest {
     public void testCirclePerimeterFunctionExists() throws Exception {
         FunctionDispatcher dispatcher = new FunctionDispatcher(MathService.class);
 
-        dispatcher.call("circle-perimeter", new Object[]{14.0});
+        dispatcher.get("circle-perimeter");
     }
 
     @Test
@@ -24,7 +26,7 @@ public class FunctionDispatcherTest {
 
         RuntimeException ex = assertThrows(
                 RuntimeException.class,
-                () -> dispatcher.call("hey-jude", new Object[]{})
+                () -> dispatcher.get("hey-jude")
         );
 
         assertEquals("Function not found: hey-jude", ex.getMessage());
@@ -34,7 +36,9 @@ public class FunctionDispatcherTest {
     public void testTriangleArea1Return() throws Exception {
         FunctionDispatcher dispatcher = new FunctionDispatcher(MathService.class);
 
-        var result = dispatcher.call("triangle-area-1", new Object[]{3.0, 5.0});
+        Method m = dispatcher.get("triangle-area-1");
+
+        var result = dispatcher.call(m, new Object[]{3.0, 5.0});
 
         assertInstanceOf(Double.class, result);
     }
@@ -43,7 +47,9 @@ public class FunctionDispatcherTest {
     public void testIsPrime() throws Exception {
         FunctionDispatcher dispatcher = new FunctionDispatcher(MathService.class);
 
-        var result = dispatcher.call("is-prime", new Object[]{37L});
+        Method m = dispatcher.get("is-prime");
+
+        var result = dispatcher.call(m, new Object[]{37L});
 
         assertInstanceOf(Boolean.class, result);
 
