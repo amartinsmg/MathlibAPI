@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-REPO_URL=https://github.com/amartinsmg/MathAlgorithms.git
+REPO_URL="https://github.com/amartinsmg/mathlib.git"
 BASE_DIR=`pwd`
 EXTERNAL_DIR="`pwd`/external"
 LIB_NAME="mathlib-c"
