@@ -3,6 +3,7 @@ package com.amartinsmg.mathlibapi.core.schema;
 import java.util.List;
 import java.util.Map;
 
+import com.amartinsmg.mathlibapi.core.exceptions.ValidationException;
 import com.amartinsmg.mathlibapi.core.schema.models.FunctionSchema;
 import com.amartinsmg.mathlibapi.core.schema.models.ParamSchema;
 
@@ -13,15 +14,15 @@ public class SchemaValidator {
             Map<String, Object> args
     ) {
         if (args.size() != fn.params.size()) {
-            throw new RuntimeException("Unexpected arguments");
+            throw new ValidationException("Unexpected arguments");
         }
         for (ParamSchema p : fn.params) {
             if (!args.containsKey(p.name)) {
-                throw new RuntimeException("Missing argument: " + p.name);
+                throw new ValidationException("Missing argument: " + p.name);
             }
             Object typeDef = p.type;
             if (!isValidType(typeDef, args.get(p.name))) {
-                throw new RuntimeException(
+                throw new ValidationException(
                         "Invalid argument " + p.name
                         + ": expected " + typeDef.toString());
             }
