@@ -133,7 +133,7 @@ public class SchemaGenerator {
             properties.put(f.getName(), formattType(f.getType()));
         }
 
-        objSchema.put("properies", properties);
+        objSchema.put("properties", properties);
 
         return objSchema;
 
