@@ -20,7 +20,7 @@ public class ApiCore {
         return schema.getSchema();
     }
 
-    public Object engine(String fn, Map<String, Object> args) throws Exception {
+    public Object execEngine(String fn, Map<String, Object> args) throws Exception {
 
         Method m = dispatcher.get(fn);
 
@@ -30,6 +30,8 @@ public class ApiCore {
 
         var convertedArgs = TypeConverter.convertArgs(fnSchema, args);
 
-        return dispatcher.call(m, convertedArgs);
+        var result = dispatcher.call(m, convertedArgs);
+
+        return TypeConverter.normalizeReturn(result);
     }
 }
