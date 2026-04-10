@@ -1,5 +1,8 @@
 package com.amartinsmg.mathlibapi.api;
 
+import java.lang.reflect.Array;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -66,4 +69,60 @@ public class TypeConverter {
 
         return null;
     }
+
+    public static Object normalizeReturn(Object value) {
+
+        if (value == null) {
+            return null;
+        }
+
+        if (value instanceof Number
+                || value instanceof Boolean
+                || value instanceof String) {
+            return value;
+        }
+
+        if (value.getClass().isArray()) {
+            int length = Array.getLength(value);
+            List<Object> list = new ArrayList<>();
+            for (int i = 0; i < length; i++) {
+                list.add(
+                        normalizeReturn(Array.get(value, i)
+                        ));
+            }
+            return list;
+        }
+
+        if (value instanceof List<?> list) {
+            return list.stream()
+                    .map(TypeConverter::normalizeReturn)
+                    .toList();
+        }
+
+        if (value instanceof Map<?, ?> map) {
+            Map<String, Object> normalized = new HashMap<>();
+            map.forEach((k, v) -> {
+                normalized.put(String.valueOf(k), normalizeReturn(v));
+            });
+            return normalized;
+        }
+
+        return object2Map(value);
+    }
+
+    protected static Map<?, ?> object2Map(Object obj) {
+        Map<String, Object> map = new HashMap<>();
+
+        for (Field f : obj.getClass().getFields()) {
+            try {
+                var value = f.get(obj);
+                map.put(f.getName(), normalizeReturn(value));
+            } catch (IllegalAccessException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        return map;
+    }
+
 }
