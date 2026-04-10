@@ -49,7 +49,7 @@ public class MathServiceTest {
     }
 
     @Test
-    public void testCombinationThrowsException() {
+    public void shouldCombinationThrowsException() {
         IllegalArgumentException ex = assertThrows(
                 IllegalArgumentException.class,
                 () -> MathService.combinationSmart(10, 11)
@@ -64,7 +64,7 @@ public class MathServiceTest {
     }
 
     @Test
-    public void testPoissonThrowsException() {
+    public void shouldPoissonThrowsException() {
         IllegalArgumentException ex = assertThrows(
                 IllegalArgumentException.class,
                 () -> MathService.poisson(3, -1)
