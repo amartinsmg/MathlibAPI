@@ -14,14 +14,14 @@ import com.amartinsmg.mathlibapi.service.MathService;
 public class FunctionDispatcherTest {
 
     @Test
-    public void testCirclePerimeterFunctionExists() throws Exception {
+    public void shouldFindFunction() throws Exception {
         FunctionDispatcher dispatcher = new FunctionDispatcher(MathService.class);
 
         dispatcher.get("circle-perimeter");
     }
 
     @Test
-    public void testThrowsFunctionNotFound() throws Exception {
+    public void shouldThrowsException() throws Exception {
         FunctionDispatcher dispatcher = new FunctionDispatcher(MathService.class);
 
         RuntimeException ex = assertThrows(
@@ -33,7 +33,7 @@ public class FunctionDispatcherTest {
     }
 
     @Test
-    public void testTriangleArea1Return() throws Exception {
+    public void testTriangleArea1() throws Exception {
         FunctionDispatcher dispatcher = new FunctionDispatcher(MathService.class);
 
         Method m = dispatcher.get("triangle-area-1");
@@ -41,6 +41,8 @@ public class FunctionDispatcherTest {
         var result = dispatcher.call(m, new Object[]{3.0, 5.0});
 
         assertInstanceOf(Double.class, result);
+
+        assertEquals(7.5, (double) result, 1e-6);
     }
 
     @Test
