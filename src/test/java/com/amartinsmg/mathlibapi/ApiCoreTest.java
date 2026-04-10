@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
 
 import com.amartinsmg.mathlibapi.core.ApiCore;
+import com.amartinsmg.mathlibapi.core.exceptions.ValidationException;
 import com.amartinsmg.mathlibapi.service.MathService;
 
 public class ApiCoreTest {
@@ -25,8 +26,8 @@ public class ApiCoreTest {
 
         Map<String, Object> args = Map.of("num", 10.2);
 
-        RuntimeException ex = assertThrows(
-                RuntimeException.class,
+        ValidationException ex = assertThrows(
+                ValidationException.class,
                 () -> core.execEngine("prime-factors", args)
         );
         assertEquals("Invalid argument num: expected int64", ex.getMessage());
