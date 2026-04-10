@@ -4,7 +4,7 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.amartinsmg.mathlibapi.schema.annotations.ApiFunction;
+import com.amartinsmg.mathlibapi.api.schema.annotations.ApiFunction;
 
 public class FunctionRegistry {
 

@@ -1,4 +1,4 @@
-package com.amartinsmg.mathlibapi.schema;
+package com.amartinsmg.mathlibapi.api.schema.models;
 
 public class ParamSchema {
 

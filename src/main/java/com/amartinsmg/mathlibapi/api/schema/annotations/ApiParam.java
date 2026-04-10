@@ -1,4 +1,4 @@
-package com.amartinsmg.mathlibapi.schema.annotations;
+package com.amartinsmg.mathlibapi.api.schema.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -6,11 +6,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.METHOD)
-public @interface ApiFunction {
+@Target(ElementType.PARAMETER)
+public @interface ApiParam {
 
     String name() default "";
-    String description() default "";
-    String namespace() default "";
-
 }

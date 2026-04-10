@@ -4,7 +4,9 @@ import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Map;
 
-import com.amartinsmg.mathlibapi.schema.SchemaGenerator;
+import com.amartinsmg.mathlibapi.api.schema.SchemaGenerator;
+import com.amartinsmg.mathlibapi.api.schema.SchemaValidator;
+import com.amartinsmg.mathlibapi.api.schema.models.FunctionSchema;
 
 public class ApiCore {
 
@@ -24,13 +26,13 @@ public class ApiCore {
 
         Method m = dispatcher.get(fn);
 
-        var fnSchema = schema.getFunctionSchema(fn);
+        FunctionSchema fnSchema = schema.getFunctionSchema(fn);
 
         SchemaValidator.validate(fnSchema, args);
 
-        var convertedArgs = TypeConverter.convertArgs(fnSchema, args);
+        Object[] convertedArgs = TypeConverter.convertArgs(fnSchema, args);
 
-        var result = dispatcher.call(m, convertedArgs);
+        Object result = dispatcher.call(m, convertedArgs);
 
         return TypeConverter.normalizeReturn(result);
     }

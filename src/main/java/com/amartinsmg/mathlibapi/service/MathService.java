@@ -1,8 +1,8 @@
 package com.amartinsmg.mathlibapi.service;
 
 import com.amartinsmg.mathlibapi.model.Point;
-import com.amartinsmg.mathlibapi.schema.annotations.ApiFunction;
-import com.amartinsmg.mathlibapi.schema.annotations.ApiParam;
+import com.amartinsmg.mathlibapi.api.schema.annotations.ApiFunction;
+import com.amartinsmg.mathlibapi.api.schema.annotations.ApiParam;
 import com.amartinsmg.mathlibapi.wrapper.MathLibWrapper;
 
 public class MathService {

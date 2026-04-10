@@ -2,12 +2,12 @@ package com.amartinsmg.mathlibapi.api;
 
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
-import java.util.ArrayList;
+import java.util.ArrayList; 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.amartinsmg.mathlibapi.schema.FunctionSchema;
+import com.amartinsmg.mathlibapi.api.schema.models.FunctionSchema;
 
 public class TypeConverter {
 

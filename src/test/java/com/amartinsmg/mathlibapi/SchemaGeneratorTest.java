@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
-import com.amartinsmg.mathlibapi.schema.SchemaGenerator;
+import com.amartinsmg.mathlibapi.api.schema.SchemaGenerator;
 import com.amartinsmg.mathlibapi.service.MathService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 

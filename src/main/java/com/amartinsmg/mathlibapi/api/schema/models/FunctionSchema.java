@@ -1,4 +1,4 @@
-package com.amartinsmg.mathlibapi.schema;
+package com.amartinsmg.mathlibapi.api.schema.models;
 
 import java.util.ArrayList;
 
@@ -9,5 +9,4 @@ public class FunctionSchema {
     public String namespace;
     public Object returnType;
     public ArrayList<ParamSchema> params;
-
 }
