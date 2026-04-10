@@ -31,9 +31,9 @@ public class TypeConverter {
                     case "int64":
                         return num.longValue();
                     case "float":
-                        return num.longValue();
+                        return num.floatValue();
                     case "double":
-                        return num.longValue();
+                        return num.doubleValue();
                     default:
                 }
             } else if ("boolean".equals(type) && arg instanceof Boolean) {
@@ -86,9 +86,7 @@ public class TypeConverter {
             int length = Array.getLength(value);
             List<Object> list = new ArrayList<>();
             for (int i = 0; i < length; i++) {
-                list.add(
-                        normalizeReturn(Array.get(value, i)
-                        ));
+                list.add(normalizeReturn(Array.get(value, i)));
             }
             return list;
         }
