@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import com.amartinsmg.mathlibapi.core.FunctionDispatcher;
+import com.amartinsmg.mathlibapi.core.exceptions.FunctionNotFoundException;
 import com.amartinsmg.mathlibapi.service.MathService;
 
 public class FunctionDispatcherTest {
@@ -24,8 +25,8 @@ public class FunctionDispatcherTest {
     public void shouldThrowsException() throws Exception {
         FunctionDispatcher dispatcher = new FunctionDispatcher(MathService.class);
 
-        RuntimeException ex = assertThrows(
-                RuntimeException.class,
+        FunctionNotFoundException ex = assertThrows(
+                FunctionNotFoundException.class,
                 () -> dispatcher.get("hey-jude")
         );
 
