@@ -213,21 +213,21 @@ public class MathService {
     }
 
     @ApiFunction(name = "logarithm",
-            namespace = "basic-operaions",
+            namespace = "basic-operations",
             description = "Calculates the logarithm of a number with a given base")
     public static double logarithm(double num, double base) {
         return MathLibWrapper.logarithm(num, base);
     }
 
     @ApiFunction(name = "nth-root",
-            namespace = "basic-operaions",
+            namespace = "basic-operations",
             description = "Calculates the nth root of a number")
     public static double nthRoot(double radicand, double degree) {
         return MathLibWrapper.nthRoot(radicand, degree);
     }
 
     @ApiFunction(name = "round-to",
-            namespace = "basic-operaions",
+            namespace = "basic-operations",
             description = "Rounds a number to a specified number of decimal places")
     public static double roundTo(
             double num,
@@ -354,7 +354,7 @@ public class MathService {
     }
 
     @ApiFunction(name = "gcd",
-            namespace = "number-thory",
+            namespace = "number-theory",
             description = "Calculates the greatest common divisor of two numbers")
     public static long gcd(long x, long y) {
         return MathLibWrapper.gcd(x, y);
