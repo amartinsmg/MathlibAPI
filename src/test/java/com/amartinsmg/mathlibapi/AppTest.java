@@ -5,12 +5,16 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.junit.jupiter.api.AfterAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DynamicTest;
+import org.junit.jupiter.api.TestFactory;
 
 import com.amartinsmg.mathlibapi.core.ApiCore;
 import com.amartinsmg.mathlibapi.core.exceptions.ApiException;
@@ -21,15 +25,17 @@ import com.sun.net.httpserver.HttpServer;
 
 public class AppTest {
 
+    private static ApiCore core;
     private static HttpServer server;
     private static HttpClient client;
     private static int port;
 
     @BeforeAll
-    static void setup() throws Exception {
+    static void startSever() throws Exception {
+
         client = HttpClient.newHttpClient();
 
-        ApiCore core = new ApiCore(MathService.class);
+        core = new ApiCore(MathService.class);
 
         server = HttpServer.create(new InetSocketAddress(0), 0);
 
@@ -56,7 +62,7 @@ public class AppTest {
                     throw new ApiException(400, "Invalid JSON body");
                 }
 
-                if (!(parsed instanceof java.util.Map body)) {
+                if (!(parsed instanceof Map body)) {
                     throw new ApiException(400, "JSON body must be an object");
                 }
 
@@ -69,12 +75,12 @@ public class AppTest {
                 if (requestArgs == null) {
                     throw new ApiException(400, "'args' is required");
                 }
-                if (!(requestArgs instanceof java.util.Map argsMap)) {
-                    throw new ApiException(400, "'args' must be an object");
+                if (!(requestArgs instanceof Map argsMap)) {
+                    throw new ApiException(400, "'args' must be an object (key-value)");
                 }
 
                 var result = core.execEngine(fnStr, argsMap);
-                String json = JsonUtils.toJson(java.util.Map.of("result", result));
+                String json = JsonUtils.toJson(Map.of("result", result));
 
                 ex.getResponseHeaders().add("Content-Type", "application/json");
                 ex.sendResponseHeaders(200, json.length());
@@ -89,81 +95,96 @@ public class AppTest {
     }
 
     @AfterAll
-    static void teardown() {
-        server.stop(0);
+    static void StopServer() {
+        server.stop(port);
     }
 
-    private String url(String path){
+    static String getUrl(String path) {
         return "http://localhost:" + port + path;
     }
 
-    // ----------------------------
-    // TESTES
-    // ----------------------------
+    @TestFactory
+    Collection<DynamicTest> contractTests() {
+        var schema = core.getSchema();
 
-    @Test
-    void testGetSchema() throws Exception {
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(url("/schema")))
-                .GET()
-                .build();
-
-        HttpResponse<String> response =
-                client.send(request, HttpResponse.BodyHandlers.ofString());
-
-        assertEquals(200, response.statusCode());
-        assertTrue(response.body().contains("prime-factors"));
+        return schema.stream()
+                .map(fn -> DynamicTest.dynamicTest(
+                "Test function: " + fn.get("name"),
+                () -> testFunction(fn)
+        )).toList();
     }
 
-    @Test
-    void testPrimeFactors() throws Exception {
-        String jsonBody = """
-            {
-                "fn": "prime-factors",
-                "args": {
-                    "num": 60
-                }
-            }
-        """;
+    static void testFunction(Map<String, Object> fn) throws Exception {
+        Map<String, Object> args = new HashMap<>();
+
+        var params = (List<Map<String, Object>>) fn.get("params");
+
+        for (var p : params) {
+            String pName = (String) p.get("name");
+            var pType = p.get("type");
+
+            args.put(pName, generateValue(pType));
+        }
+
+        String body = JsonUtils.toJson(Map.of(
+                "fn", fn.get("name"),
+                "args", args
+        ));
 
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(url("/exec")))
+                .uri(URI.create(getUrl("/exec")))
                 .header("Content-Type", "application/json")
-                .POST(HttpRequest.BodyPublishers.ofString(jsonBody))
+                .POST(HttpRequest.BodyPublishers.ofString(body))
                 .build();
 
-        HttpResponse<String> response =
-                client.send(request, HttpResponse.BodyHandlers.ofString());
+        HttpResponse<String> response
+                = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-        assertEquals(200, response.statusCode());
-
-        assertTrue(response.body().contains("2"));
-        assertTrue(response.body().contains("3"));
-        assertTrue(response.body().contains("5"));
+        assertEquals(200,
+            response.statusCode(),
+            "Error in function: " + fn.get("name"));
     }
 
-    @Test
-    void testMean() throws Exception {
-        String jsonBody = """
-            {
-                "fn": "mean",
-                "args": {
-                    "dataset": [1,8,2,5,2,3]
-                }
+    static Object generateValue(Object type) {
+        if (type instanceof String t) {
+            return switch (t) {
+                case "int32", "int64" ->
+                    1;
+                case "float", "double" ->
+                    1.0;
+                case "string" ->
+                    "test";
+                case "boolean" ->
+                    true;
+                default ->
+                    throw new RuntimeException("Unknown type: " + t);
+            };
+
+        }
+        if (type instanceof Map<?, ?> map) {
+            String typeName = (String) map.get("type");
+
+            if ("array".equals(typeName)) {
+                var itemType = map.get("items");
+                return List.of(
+                        generateValue(itemType),
+                        generateValue(itemType),
+                        generateValue(itemType));
             }
-        """;
+            if ("object".equals(typeName)) {
+                var props = (Map<String, Object>) map.get("properties");
+                Map<String, Object> obj = new HashMap<>();
 
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(url("/exec")))
-                .header("Content-Type", "application/json")
-                .POST(HttpRequest.BodyPublishers.ofString(jsonBody))
-                .build();
-
-        HttpResponse<String> response =
-                client.send(request, HttpResponse.BodyHandlers.ofString());
-
-        assertEquals(200, response.statusCode());
-
-        assertTrue(response.body().contains("3.5"));
+                for (Map.Entry<String, Object> e : props.entrySet()) {
+                    String key = e.getKey();
+                    var fieldType = e.getValue();
+                    var value = generateValue(fieldType);
+                    obj.put(key, value);
+                }
+                return obj;
+            }
+        }
+        throw new RuntimeException("Unsuported type: " + type);
     }
+
 }
