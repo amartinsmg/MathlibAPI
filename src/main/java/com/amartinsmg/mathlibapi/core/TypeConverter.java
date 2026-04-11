@@ -2,7 +2,7 @@ package com.amartinsmg.mathlibapi.core;
 
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
-import java.util.ArrayList; 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,35 +25,44 @@ public class TypeConverter {
     protected static Object convertType(Object typeDef, Object arg) {
         if (typeDef instanceof String type) {
             if (arg instanceof Number num) {
-                switch (type) {
-                    case "int32":
-                        return num.intValue();
-                    case "int64":
-                        return num.longValue();
-                    case "float":
-                        return num.floatValue();
-                    case "double":
-                        return num.doubleValue();
-                    default:
-                }
+                return switch (type) {
+                    case "int32" ->
+                        num.intValue();
+                    case "int64" ->
+                        num.longValue();
+                    case "float" ->
+                        num.floatValue();
+                    case "double" ->
+                        num.doubleValue();
+                    default ->
+                        num;
+                };
             } else if ("boolean".equals(type) && arg instanceof Boolean) {
                 return arg;
             }
             return arg;
         }
-        if (typeDef instanceof Map) {
-            Map<String, Object> map = (Map<String, Object>) typeDef;
-            String type = (String) map.get("type");
+        if (typeDef instanceof Map map) {
+            String type = String.valueOf(map.get("type"));
             if ("array".equals(type) && arg instanceof List<?> list) {
-                return list.stream()
-                        .map(o -> convertType(map.get("items"), o))
-                        .toArray();
-            } else if ("object".equals(type) && arg instanceof Map<?, ?> inputMap) {
-                Map<String, Object> properties = (Map<String, Object>) map.get("properties");
+
+                Object itemType = map.get("items");
+                Class<?> itemClass = resolveType(itemType);
+                var arr = Array.newInstance(itemClass, list.size());
+
+                for (int i = 0; i < list.size(); i++) {
+                    var value = convertType(itemType, list.get(i));
+                    Array.set(arr, i, value);
+                }
+
+                return arr;
+            } else if ("object".equals(type)
+                    && arg instanceof Map<?, ?> inputMap
+                    && map.get("properties") instanceof Map<?, ?> properties) {
                 Map<String, Object> result = new HashMap<>();
 
-                for (Map.Entry<String, Object> e : properties.entrySet()) {
-                    String key = e.getKey();
+                for (Map.Entry<?, ?> e : properties.entrySet()) {
+                    String key = String.valueOf(e.getKey());
                     var fieldType = e.getValue();
 
                     var value = inputMap.get(key);
@@ -68,6 +77,24 @@ public class TypeConverter {
         }
 
         return null;
+    }
+
+    private static Class<?> resolveType(Object type) {
+        if (type instanceof String str) {
+            return switch (str) {
+                case "int32" ->
+                    int.class;
+                case "int64" ->
+                    long.class;
+                case "float" ->
+                    float.class;
+                case "double" ->
+                    double.class;
+                default ->
+                    Object.class;
+            };
+        }
+        return Object.class;
     }
 
     public static Object normalizeReturn(Object value) {
