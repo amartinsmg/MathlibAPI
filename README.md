@@ -7,7 +7,6 @@ A lightweight HTTP API that exposes a comprehensive mathematical function librar
 ## Table of Contents
 
 - [Overview](#overview)
-- [Architecture](#architecture)
 - [Requirements](#requirements)
 - [Building & Running](#building--running)
 - [API Reference](#api-reference)
@@ -18,7 +17,6 @@ A lightweight HTTP API that exposes a comprehensive mathematical function librar
 - [Namespaces](#namespaces)
 - [Type System](#type-system)
 - [Examples](#examples)
-- [Project Structure](#project-structure)
 
 ---
 
@@ -35,47 +33,31 @@ MathLib API wraps a native C shared library (`.so`) and exposes its functions ov
 
 ---
 
-## Architecture
-
-```
-HTTP Request
-     │
-     ▼
-RouterHandler        ← method validation, error serialization
-     │
-     ▼
-ApiCore              ← orchestrates schema + dispatcher
-     ├── SchemaGenerator    ← reads @ApiFunction/@ApiParam annotations at startup
-     ├── SchemaValidator    ← validates incoming args against schema
-     ├── TypeConverter      ← converts JSON types to Java/native types
-     └── FunctionDispatcher ← reflective method invocation on MathService
-                                      │
-                                      ▼
-                              MathLibWrapper     ← JNA bindings to .so
-                                      │
-                                      ▼
-                              mathlib.so (C)     ← actual computation
-```
-
----
-
 ## Requirements
 
-- Java 17+
-- JNA (`com.sun.jna`) on the classpath
-- The native shared library (`mathlib.so`) accessible at runtime (e.g., `java.library.path`)
+- Java 21+
+- Maven 3.6+
+- GCC and Make (to compile the native C library)
+- Git (to clone the native library repository)
 
 ---
 
 ## Building & Running
 
-```bash
-# Compile (adjust classpath as needed)
-javac -cp .:jna.jar -d out src/**/*.java
+**First time setup** — clones and compiles the native C library:
 
-# Run
-java -cp out:jna.jar -Djava.library.path=./lib com.amartinsmg.mathlibapi.App
+```bash
+chmod +x scripts/setup-native.sh scripts/run.sh
+./scripts/setup-native.sh
 ```
+
+Start the server:
+
+```bash
+./scripts/run.sh
+```
+
+`run.sh` builds the fat JAR via Maven, extracts `libmathlib.so` to `./lib/`, and starts the server. If the native library is not found, it runs `setup-native.sh` automatically before proceeding.
 
 Server starts on **http://localhost:8080**.
 
