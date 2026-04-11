@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.Test;
 
-import com.amartinsmg.mathlibapi.core.FunctionRegistry;
+import com.amartinsmg.mathlibapi.core.dispatcher.FunctionRegistry;
 import com.amartinsmg.mathlibapi.service.MathService;
 
 public class FunctionRegistryTest {

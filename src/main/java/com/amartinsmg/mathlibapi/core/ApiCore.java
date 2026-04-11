@@ -4,6 +4,7 @@ import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Map;
 
+import com.amartinsmg.mathlibapi.core.dispatcher.FunctionDispatcher;
 import com.amartinsmg.mathlibapi.core.exceptions.ApiException;
 import com.amartinsmg.mathlibapi.core.schema.SchemaGenerator;
 import com.amartinsmg.mathlibapi.core.schema.SchemaValidator;
@@ -40,7 +41,7 @@ public class ApiCore {
             if (e instanceof ApiException ex) {
                 throw ex;
             }
-            
+
             throw new ApiException(500, "Exection error");
         }
     }
