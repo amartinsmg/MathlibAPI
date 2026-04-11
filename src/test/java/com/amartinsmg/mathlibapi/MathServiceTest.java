@@ -17,15 +17,14 @@ public class MathServiceTest {
 
     @Test
     public void testFactorialSmallNumbers() {
-        double result = MathService.factorialSmart(12);
-        assertEquals(479001600, result, 1e-3);
+        String result = MathService.factorialSmart(12);
+        assertEquals("479001600", result);
     }
 
     @Test
     public void testFactorialLargeNumbers() {
-        double result = MathService.factorialSmart(30);
-        assertEquals(2.652528598e32, result, 1e23);
-
+        String result = MathService.factorialSmart(30);
+        assertEquals("2.652528598121910e+32", result);
     }
 
     @Test
@@ -39,14 +38,14 @@ public class MathServiceTest {
 
     @Test
     public void testCombinationSmallNumbers() {
-        double result = MathService.combinationSmart(15, 12);
-        assertEquals(455, result, 1e-6);
+        String result = MathService.combinationSmart(15, 12);
+        assertEquals("455", result);
     }
 
     @Test
     public void testCombinationLargeNumbers() {
-        double result = MathService.combinationSmart(60, 6);
-        assertEquals(50063860, result, 1e-6);
+        String result = MathService.combinationSmart(60, 6);
+        assertEquals("50063860", result);
     }
 
     @Test
