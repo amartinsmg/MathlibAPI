@@ -241,33 +241,49 @@ public class MathService {
     @ApiFunction(name = "permutation",
             namespace = "combinatorics",
             description = "Calculates the permutation of a number")
-    public static double permutationSmart(int num) {
+    public static String permutationSmart(int num) {
         if (num < 0) {
             throw new BusinessException("num must be >= 0");
         }
+
         if (num <= 20) {
-            return (double) MathLibWrapper.permutation(num);
+            return String.valueOf(MathLibWrapper.permutation(num));
         }
-        return MathLibWrapper.permutationlf(num);
+        
+        double result = MathLibWrapper.permutationlf(num);
+
+        if (result > 1e15) {
+            return String.format("%.15e", result);
+        } else {
+            return String.valueOf((long) result);
+        }
     }
 
     @ApiFunction(name = "cycle-permutation",
             namespace = "combinatorics",
             description = "Calculates the cycle permutation of a number")
-    public static double cyclePermutationSmart(int num) {
+    public static String cyclePermutationSmart(int num) {
         if (num < 0) {
             throw new BusinessException("num must be >= 0");
         }
+
         if (num <= 20) {
-            return (double) MathLibWrapper.cyclePermutation(num);
+            return String.valueOf(MathLibWrapper.cyclePermutation(num));
         }
-        return MathLibWrapper.cyclePermutationlf(num);
+
+        double result = MathLibWrapper.cyclePermutationlf(num);
+
+        if (result > 1e15) {
+            return String.format("%.15e", result);
+        } else {
+            return String.valueOf((long) result);
+        }
     }
 
     @ApiFunction(name = "arrangement",
             namespace = "combinatorics",
             description = "Calculates the arrangement of selecting items from a total")
-    public static double arrangementSmart(int total, int selected) {
+    public static String arrangementSmart(int total, int selected) {
         if (total <= 0) {
             throw new BusinessException("total must be > 0");
         }
@@ -277,16 +293,24 @@ public class MathService {
         if (selected > total) {
             throw new BusinessException("select must be <= total");
         }
+
         if (total <= 20) {
-            return (double) MathLibWrapper.arrangement(total, selected);
+            return String.valueOf(MathLibWrapper.arrangement(total, selected));
         }
-        return MathLibWrapper.arrangementlf(total, selected);
+
+        double result = MathLibWrapper.arrangementlf(total, selected);
+
+        if (result > 1e15) {
+            return String.format("%.15e", result);
+        } else {
+            return String.valueOf((long) result);
+        }
     }
 
     @ApiFunction(name = "combination",
             namespace = "combinatorics",
             description = "Calculates the combination of selecting items from a total")
-    public static double combinationSmart(int total, int selected) {
+    public static String combinationSmart(int total, int selected) {
         if (total <= 0) {
             throw new BusinessException("total must be > 0");
         }
@@ -296,23 +320,37 @@ public class MathService {
         if (selected > total) {
             throw new BusinessException("select must be <= total");
         }
+
         if (total <= 20) {
-            return (double) MathLibWrapper.combination(total, selected);
+            return String.valueOf(MathLibWrapper.combination(total, selected));
         }
-        return MathLibWrapper.combinationlf(total, selected);
+
+        double result = MathLibWrapper.combinationlf(total, selected);
+
+        if (result > 1e15) {
+            return String.format("%.15e", result);
+        } else {
+            return String.valueOf((long) result);
+        }
     }
 
     @ApiFunction(name = "factorial",
             namespace = "combinatorics",
             description = "Calculates the factorial of a number")
-    public static double factorialSmart(int num) {
+    public static String factorialSmart(int num) {
         if (num < 0) {
             throw new BusinessException("num must be >= 0");
         }
         if (num <= 20) {
-            return (double) MathLibWrapper.factorial(num);
+            return String.valueOf(MathLibWrapper.factorial(num));
         }
-        return MathLibWrapper.factoriallf(num);
+        double result = MathLibWrapper.factoriallf(num);
+
+        if (result > 1e15) {
+            return String.format("%.15e", result);
+        } else {
+            return String.valueOf((long) result);
+        }
     }
 
     @ApiFunction(name = "gcd",
