@@ -254,8 +254,8 @@ public class MathService {
             namespace = "combinatorics",
             description = "Calculates the cycle permutation of a number")
     public static double cyclePermutationSmart(int num) {
-        if (num <= 1) {
-            throw new IllegalArgumentException("num must be > 1");
+        if (num < 0) {
+            throw new IllegalArgumentException("num must be >= 0");
         }
         if (num <= 20) {
             return (double) MathLibWrapper.cyclePermutation(num);
