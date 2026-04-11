@@ -141,8 +141,8 @@ public class AppTest {
                 = client.send(request, HttpResponse.BodyHandlers.ofString());
 
         assertEquals(200,
-            response.statusCode(),
-            "Error in function: " + fn.get("name"));
+                response.statusCode(),
+                "Error in function: " + fn.get("name"));
     }
 
     static Object generateValue(Object type) {
