@@ -130,6 +130,10 @@ public class SchemaGenerator {
             return "boolean";
         }
 
+        if (type == String.class) {
+            return "string";
+        }
+
         Map<String, Object> objSchema = new HashMap<>();
         objSchema.put("type", "object");
 
