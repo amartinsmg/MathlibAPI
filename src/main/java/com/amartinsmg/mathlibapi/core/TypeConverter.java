@@ -94,8 +94,9 @@ public class TypeConverter {
                     result.put(key, converted);
                 }
 
-                throw new ConversionException("Unknow complex type: " + type);
+                return result;
             }
+            throw new ConversionException("Unknow complex type: " + type);
         }
 
         throw new ConversionException("Invalid type definition: " + typeDef);
