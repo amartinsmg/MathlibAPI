@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
 
+import com.amartinsmg.mathlibapi.core.exceptions.BusinessException;
 import com.amartinsmg.mathlibapi.service.MathService;
 
 public class MathServiceTest {
@@ -29,8 +30,8 @@ public class MathServiceTest {
 
     @Test
     public void testFactorialThrowsException() {
-        IllegalArgumentException ex = assertThrows(
-                IllegalArgumentException.class,
+        BusinessException ex = assertThrows(
+                BusinessException.class,
                 () -> MathService.factorialSmart(-1)
         );
         assertEquals("num must be >= 0", ex.getMessage());
@@ -50,8 +51,8 @@ public class MathServiceTest {
 
     @Test
     public void shouldCombinationThrowsException() {
-        IllegalArgumentException ex = assertThrows(
-                IllegalArgumentException.class,
+        BusinessException ex = assertThrows(
+                BusinessException.class,
                 () -> MathService.combinationSmart(10, 11)
         );
         assertEquals("select must be <= total", ex.getMessage());
@@ -65,8 +66,8 @@ public class MathServiceTest {
 
     @Test
     public void shouldPoissonThrowsException() {
-        IllegalArgumentException ex = assertThrows(
-                IllegalArgumentException.class,
+        BusinessException ex = assertThrows(
+                BusinessException.class,
                 () -> MathService.poisson(3, -1)
         );
         assertEquals("x must be >= 0", ex.getMessage());
