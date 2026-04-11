@@ -12,18 +12,18 @@ The server is built on top of `com.sun.net.httpserver` — the lightweight HTTP 
 
 ```
 ┌──────────────────────────────────────────────────────────┐
-│                        HTTP Client                       │
+│                        HTTP Client                        │
 └────────────────────────────┬─────────────────────────────┘
                              │ GET /schema  │  POST /exec
                              ▼
 ┌──────────────────────────────────────────────────────────┐
-│                    App.java (entry point)                │
+│                    App.java (entry point)                 │
 │         HttpServer · route registration · wiring         │
 └──────────┬───────────────────────────────────────────────┘
            │
            ▼
 ┌──────────────────────────────────────────────────────────┐
-│                     RouterHandler                        │
+│                     RouterHandler                         │
 │       HTTP method gating · error serialization           │
 └──────────┬───────────────────────────────────────────────┘
            │
@@ -32,10 +32,10 @@ The server is built on top of `com.sun.net.httpserver` — the lightweight HTTP 
 │                       ApiCore                            │
 │   orchestrates: schema retrieval + function execution    │
 │                                                          │
-│   ┌──────────────────┐   ┌──────────────────────────┐    │
-│   │  SchemaGenerator │   │    FunctionDispatcher    │    │
-│   │  SchemaValidator │   │    FunctionRegistry      │    │
-│   │  TypeConverter   │   └──────────────────────────┘    │
+│   ┌──────────────────┐   ┌──────────────────────────┐   │
+│   │  SchemaGenerator │   │    FunctionDispatcher    │   │
+│   │  SchemaValidator │   │    FunctionRegistry      │   │
+│   │  TypeConverter   │   └──────────────────────────┘   │
 │   └──────────────────┘                                   │
 └──────────┬───────────────────────────────────────────────┘
            │
@@ -48,20 +48,20 @@ The server is built on top of `com.sun.net.httpserver` — the lightweight HTTP 
            │
            ▼
 ┌──────────────────────────────────────────────────────────┐
-│                    MathLibWrapper                        │
+│                    MathLibWrapper                         │
 │   Java-idiomatic wrappers · pointer/array lifecycle      │
 └──────────┬───────────────────────────────────────────────┘
            │
            ▼
 ┌──────────────────────────────────────────────────────────┐
-│                    MathLibNative (JNA)                   │
+│                    MathLibNative (JNA)                    │
 │   JNA interface · maps Java method signatures to C ABI   │
 └──────────┬───────────────────────────────────────────────┘
            │  dlopen / dlsym
            ▼
 ┌──────────────────────────────────────────────────────────┐
-│                    libmathlib.so (C)                     │
-│              the actual mathematical engine              │
+│                      mathlib.so (C)                       │
+│              the actual mathematical engine               │
 └──────────────────────────────────────────────────────────┘
 ```
 
