@@ -34,9 +34,11 @@ public class RouterHandler {
             ex.getResponseBody().write(error.getBytes());
             ex.close();
         } catch (Exception e) {
-            String errorJson = "{\"error\":\"Internal server error\"}";
-            ex.sendResponseHeaders(500, errorJson.length());
-            ex.getResponseBody().write((errorJson.getBytes()));
+            System.err.println(e.getMessage());
+            String error = "{\"error\":\"fatal\"}";
+
+            ex.sendResponseHeaders(500, error.length());
+            ex.getResponseBody().write((error.getBytes()));
             ex.close();
         }
     }
