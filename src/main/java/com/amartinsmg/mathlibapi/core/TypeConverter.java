@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.amartinsmg.mathlibapi.core.exceptions.ConversionException;
 import com.amartinsmg.mathlibapi.core.schema.models.FunctionSchema;
 
 public class TypeConverter {
@@ -23,6 +24,11 @@ public class TypeConverter {
     }
 
     protected static Object convertType(Object typeDef, Object arg) {
+
+        if (arg == null) {
+            throw new ConversionException("Value is null");
+        }
+
         if (typeDef instanceof String type) {
             if (arg instanceof Number num) {
                 return switch (type) {
@@ -35,12 +41,15 @@ public class TypeConverter {
                     case "double" ->
                         num.doubleValue();
                     default ->
-                        num;
+                        throw new ConversionException("Unknow primitive type");
                 };
             } else if ("boolean".equals(type) && arg instanceof Boolean) {
                 return arg;
+            } else if ("string".equals(type) && arg instanceof String) {
+                return arg;
             }
-            return arg;
+            throw new ConversionException("Type mismatch, Expected: " + type
+                    + ", got: " + arg.getClass().getSimpleName());
         }
         if (typeDef instanceof Map map) {
             String type = String.valueOf(map.get("type"));
@@ -72,11 +81,11 @@ public class TypeConverter {
                     result.put(key, converted);
                 }
 
-                return result;
+                throw new ConversionException("Unknow complex type: " + type);
             }
         }
 
-        return null;
+        throw new ConversionException("Invalid type definition: " + typeDef);
     }
 
     private static Class<?> resolveType(Object type) {
