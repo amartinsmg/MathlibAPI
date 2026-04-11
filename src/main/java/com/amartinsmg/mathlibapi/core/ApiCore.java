@@ -42,7 +42,8 @@ public class ApiCore {
                 throw ex;
             }
 
-            throw new ApiException(500, "Exection error");
+            System.err.println(e.getMessage());
+            throw new ApiException(500, "Execution error");
         }
     }
 }
