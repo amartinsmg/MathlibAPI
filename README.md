@@ -160,8 +160,6 @@ Functions are grouped by namespace. Use the `/schema` endpoint to list all funct
 | `trigonometry`     | Hypotenuse, right triangle side, Law of Cosines, Law of Sines |
 | `volume`           | Volume of: cube, cuboid, prism, regular prism, pyramid, regular pyramid, cylinder, cone, sphere |
 
-> **Note:** The namespaces `number-thory` and `basic-operaions` appear as-is in the source code (minor typos). The schema endpoint reflects these exact strings.
-
 ---
 
 ## Type System

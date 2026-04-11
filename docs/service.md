@@ -87,18 +87,17 @@ These checks run after schema validation (which covers `@ApiParam` min/max) and 
 |-----------|-----------|
 | `area-shape` | `triangle-area-1/2/3`, `square-area`, `rectangle-area`, `rhombus-area`, `parallelogram-area-1/2`, `trapezoid-area`, `regular-polygon-area`, `circle-area`, `circular-sector-area-1/2`, `ellipse-area` |
 | `area-surface` | `cube-area`, `cuboid-area`, `prism-area`, `regular-prism-area`, `pyramid-area`, `regular-pyramid-area`, `cylinder-area`, `cone-area`, `sphere-area` |
-| `basic-operaions`* | `logarithm`, `nth-root`, `round-to` |
+| `basic-operations` | `logarithm`, `nth-root`, `round-to` |
 | `combinatorics` | `permutation`, `cycle-permutation`, `arrangement`, `combination`, `factorial` |
 | `finance` | `simple-growth`, `simple-growth-rate`, `compound-growth`, `compound-growth-rate` |
 | `geometry` | `deg-to-rad`, `rad-to-deg`, `distance-points`, `midpoint`, `slope-line`, `inclination-line`, `line-y-intercept`, `distance-point-line`, `circle-perimeter`, `polygon-diagonals`, `convex-polygon-sum-interior-angles`, `regular-polygon-interior-angle`, `convex-polygon-exterior-angle` |
-| `number-theory` / `number-thory`* | `is-armstrong`, `gcd`, `is-happy`, `lcm`, `is-perfect`, `prime-factors`, `is-prime` |
+| `number-theory` | `is-armstrong`, `gcd`, `is-happy`, `lcm`, `is-perfect`, `prime-factors`, `is-prime` |
 | `percentage` | `n-percent-of-x`, `n-is-what-percent-of-x` |
 | `probability` | `binomial`, `poisson`, `gaussian-cdf` |
 | `statistics` | `mean`, `trimmed-mean`, `geometric-mean`, `harmonic-mean`, `median`, `mode`, `min`, `max`, `range`, `midrange`, `variance`, `std-dev`, `sample-variance`, `sample-std-dev` |
 | `trigonometry` | `hypotenuse`, `side-right-triangle`, `side-triangle-law-of-cos`, `ang-triangle-law-of-cos`, `side-triangle-law-of-sin`, `ang-triangle-law-of-sin` |
 | `volume` | `cube-volume`, `cuboid-volume`, `prism-volume`, `regular-prism-volume`, `pyramid-volume`, `regular-pyramid-volume`, `cylinder-volume`, `cone-volume`, `sphere-volume` |
 
-> \* Namespace strings contain typos in the current source. These are the exact strings registered in the schema.
 
 ---
 
