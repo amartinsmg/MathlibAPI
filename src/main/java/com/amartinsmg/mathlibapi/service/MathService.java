@@ -1,5 +1,6 @@
 package com.amartinsmg.mathlibapi.service;
 
+import com.amartinsmg.mathlibapi.core.exceptions.BusinessException;
 import com.amartinsmg.mathlibapi.core.schema.annotations.ApiFunction;
 import com.amartinsmg.mathlibapi.core.schema.annotations.ApiParam;
 import com.amartinsmg.mathlibapi.model.Point;
@@ -232,7 +233,7 @@ public class MathService {
             double num,
             @ApiParam(name = "decimal-places") int decimalPlaces) {
         if (decimalPlaces < 0) {
-            throw new IllegalArgumentException("decimalPlaces must be >= 0");
+            throw new BusinessException("decimalPlaces must be >= 0");
         }
         return MathLibWrapper.roundTo(num, decimalPlaces);
     }
@@ -242,7 +243,7 @@ public class MathService {
             description = "Calculates the permutation of a number")
     public static double permutationSmart(int num) {
         if (num < 0) {
-            throw new IllegalArgumentException("num must be >= 0");
+            throw new BusinessException("num must be >= 0");
         }
         if (num <= 20) {
             return (double) MathLibWrapper.permutation(num);
@@ -255,7 +256,7 @@ public class MathService {
             description = "Calculates the cycle permutation of a number")
     public static double cyclePermutationSmart(int num) {
         if (num < 0) {
-            throw new IllegalArgumentException("num must be >= 0");
+            throw new BusinessException("num must be >= 0");
         }
         if (num <= 20) {
             return (double) MathLibWrapper.cyclePermutation(num);
@@ -268,13 +269,13 @@ public class MathService {
             description = "Calculates the arrangement of selecting items from a total")
     public static double arrangementSmart(int total, int selected) {
         if (total <= 0) {
-            throw new IllegalArgumentException("total must be > 0");
+            throw new BusinessException("total must be > 0");
         }
         if (selected < 0) {
-            throw new IllegalArgumentException("selected must be >= 0");
+            throw new BusinessException("selected must be >= 0");
         }
         if (selected > total) {
-            throw new IllegalArgumentException("select must be <= total");
+            throw new BusinessException("select must be <= total");
         }
         if (total <= 20) {
             return (double) MathLibWrapper.arrangement(total, selected);
@@ -287,13 +288,13 @@ public class MathService {
             description = "Calculates the combination of selecting items from a total")
     public static double combinationSmart(int total, int selected) {
         if (total <= 0) {
-            throw new IllegalArgumentException("total must be > 0");
+            throw new BusinessException("total must be > 0");
         }
         if (selected < 0) {
-            throw new IllegalArgumentException("selected must be >= 0");
+            throw new BusinessException("selected must be >= 0");
         }
         if (selected > total) {
-            throw new IllegalArgumentException("select must be <= total");
+            throw new BusinessException("select must be <= total");
         }
         if (total <= 20) {
             return (double) MathLibWrapper.combination(total, selected);
@@ -306,7 +307,7 @@ public class MathService {
             description = "Calculates the factorial of a number")
     public static double factorialSmart(int num) {
         if (num < 0) {
-            throw new IllegalArgumentException("num must be >= 0");
+            throw new BusinessException("num must be >= 0");
         }
         if (num <= 20) {
             return (double) MathLibWrapper.factorial(num);
@@ -535,7 +536,7 @@ public class MathService {
             description = "Calculates the Poisson distribution probability")
     public static double poisson(double lambda, int x) {
         if (x < 0) {
-            throw new IllegalArgumentException("x must be >= 0");
+            throw new BusinessException("x must be >= 0");
         }
         return MathLibWrapper.poisson(lambda, x);
     }
