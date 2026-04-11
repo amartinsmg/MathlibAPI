@@ -1,11 +1,13 @@
 package com.amartinsmg.mathlibapi.core;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Map;
 
 import com.amartinsmg.mathlibapi.core.dispatcher.FunctionDispatcher;
 import com.amartinsmg.mathlibapi.core.exceptions.ApiException;
+import com.amartinsmg.mathlibapi.core.exceptions.BusinessException;
 import com.amartinsmg.mathlibapi.core.schema.SchemaGenerator;
 import com.amartinsmg.mathlibapi.core.schema.SchemaValidator;
 import com.amartinsmg.mathlibapi.core.schema.models.FunctionSchema;
@@ -41,8 +43,12 @@ public class ApiCore {
             if (e instanceof ApiException ex) {
                 throw ex;
             }
+            if (e instanceof InvocationTargetException ite
+                    && ite.getCause() instanceof BusinessException be) {
+                throw new ApiException(be.getStatus(), be.getMessage());
+            }
 
-            System.err.println(e.getMessage());
+            System.err.println("Execution error: " + e.getMessage());
             throw new ApiException(500, "Execution error");
         }
     }
