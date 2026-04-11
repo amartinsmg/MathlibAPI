@@ -46,11 +46,12 @@ public class SchemaValidator {
                     return arg instanceof Number;
                 case "boolean":
                     return arg instanceof Boolean;
+                case "string":
+                    return arg instanceof String;
                 default:
                     return false;
             }
-        } else if (typeDef instanceof Map) {
-            Map<String, Object> map = (Map<String, Object>) typeDef;
+        } else if (typeDef instanceof Map map) {
             String type = (String) map.get("type");
             switch (type) {
                 case "array":
@@ -68,8 +69,8 @@ public class SchemaValidator {
                     if (!(arg instanceof Map)) {
                         return false;
                     }
-                    Map<String, Object> objArg = (Map<String, Object>) arg;
-                    Map<String, Object> props = (Map<String, Object>) map.get("properties");
+                    var objArg = (Map<String, Object>) arg;
+                    var props = (Map<String, Object>) map.get("properties");
                     for (Map.Entry<String, Object> e : props.entrySet()) {
                         String key = e.getKey();
                         Object propType = e.getValue();
