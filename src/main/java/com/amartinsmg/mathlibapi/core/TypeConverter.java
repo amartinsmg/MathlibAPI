@@ -15,11 +15,24 @@ public class TypeConverter {
     public static Object[] convertArgs(FunctionSchema fn, Map<String, Object> args) {
         int length = fn.params.size();
         Object[] arr = new Object[length];
+
         for (int i = 0; i < length; i++) {
             String name = fn.params.get(i).name;
             Object type = fn.params.get(i).type;
-            arr[i] = convertType(type, args.get(name));
+
+            if (!args.containsKey(name)) {
+                throw new ConversionException("Missing required argument");
+            }
+
+            try {
+                arr[i] = convertType(type, args.get(name));
+            } catch (ConversionException e) {
+                throw e;
+            } catch (Exception e) {
+                throw new ConversionException("Unexpcted error during conversion: " + e.getMessage());
+            }
         }
+
         return arr;
     }
 
