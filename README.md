@@ -2,16 +2,6 @@
 
 A lightweight HTTP API that exposes a comprehensive mathematical function library written in C, consumed via JNA (Java Native Access). Built with plain Java using the built-in `com.sun.net.httpserver` — no frameworks required.
 
-## Overview
-
-mathlib-api is a Java-based backend service that exposes a mathematical engine implemented in C.
-
-By combining a native computation layer with a service-oriented design, the project enables structured access to a wide range of mathematical operations through a simple API.
-
-It includes functionalities such as geometry, trigonometry, statistics, number theory, combinatorics, and probability distributions.
-
-The project focuses on integrating different technologies, separating the computation layer (C) from the application layer (Java), and providing a clean backend interface for accessing these operations.
-
 ---
 
 ## Table of Contents
@@ -299,45 +289,4 @@ curl -X POST http://localhost:8080/exec \
 
 ```json
 { "result": [2, 2, 2, 3, 3, 5] }
-```
-
----
-
-## Project Structure
-
-```
-src/
-├── App.java                        ← Entry point, HTTP server setup, route definitions
-├── core/
-│   ├── ApiCore.java                ← Orchestrates schema generation and function execution
-│   ├── TypeConverter.java          ← Converts JSON input types to Java native types
-│   ├── dispatcher/
-│   │   ├── FunctionDispatcher.java ← Resolves and invokes methods via reflection
-│   │   └── FunctionRegistry.java  ← Stores method references by function name
-│   ├── exceptions/
-│   │   ├── ApiException.java       ← HTTP-aware exception (carries status code)
-│   │   ├── BusinessException.java  ← Domain-level validation errors
-│   │   ├── ConversionException.java
-│   │   ├── FunctionNotFoundException.java
-│   │   └── ValidationException.java
-│   └── schema/
-│       ├── SchemaGenerator.java    ← Builds schema from annotations at startup
-│       ├── SchemaValidator.java    ← Validates request args against schema
-│       ├── annotations/
-│       │   ├── ApiFunction.java    ← Marks a method as an API function
-│       │   └── ApiParam.java       ← Annotates a parameter (name, min, max)
-│       └── models/
-│           ├── FunctionSchema.java
-│           └── ParamSchema.java
-├── handler/
-│   └── RouterHandler.java          ← HTTP method gating and error serialization
-├── model/
-│   └── Point.java                  ← Return type for midpoint (x, y)
-├── service/
-│   └── MathService.java            ← All @ApiFunction-annotated methods
-├── utils/
-│   └── JsonUtils.java              ← JSON serialization/deserialization
-└── wrapper/
-    ├── MathLibNative.java          ← JNA interface to native .so
-    └── MathLibWrapper.java         ← Java-friendly wrappers over JNA calls
 ```
