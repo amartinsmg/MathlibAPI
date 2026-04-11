@@ -349,12 +349,12 @@ public class MathService {
     @ApiFunction(name = "midpoint",
             namespace = "geometry",
             description = "Calculates the midpoint between two points")
-    public static Point midpointPoints(
+    public static Point midpoint(
             @ApiParam(name = "a-x") double aX,
             @ApiParam(name = "a-y") double aY,
             @ApiParam(name = "b-x") double bX,
             @ApiParam(name = "b-y") double bY) {
-        double[] result = MathLibWrapper.midpointPoints(aX, aY, bX, bY);
+        double[] result = MathLibWrapper.midpoint(aX, aY, bX, bY);
         return new Point(result[0], result[1]);
     }
 

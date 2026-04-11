@@ -93,7 +93,7 @@ public interface MathLibNative extends Library {
 
     double distancePoints(double aX, double aY, double bX, double bY);
 
-    Pointer midpointPoints(double aX, double aY, double bX, double bY);
+    Pointer midpoint(double aX, double aY, double bX, double bY);
 
     double slopeLine(double aX, double aY, double bX, double bY);
 

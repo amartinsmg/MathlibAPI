@@ -171,8 +171,8 @@ public class MathLibWrapper {
         return lib.distancePoints(aX, aY, bX, bY);
     }
 
-    public static double[] midpointPoints(double aX, double aY, double bX, double bY) {
-        Pointer ptr = lib.midpointPoints(aX, aY, bX, bY);
+    public static double[] midpoint(double aX, double aY, double bX, double bY) {
+        Pointer ptr = lib.midpoint(aX, aY, bX, bY);
 
         double[] result = new double[2];
 
