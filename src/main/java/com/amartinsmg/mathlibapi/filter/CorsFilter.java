@@ -12,6 +12,8 @@ public class CorsFilter extends Filter {
         ex.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
         ex.getResponseHeaders().add("Access-Control-Allow-Methods",
                 "GET,POST,PUT,DELETE,OPTIONS");
+        ex.getResponseHeaders().add("Access-Control-Allow-Headers",
+                "Content-Type, Authorization");
         if (ex.getRequestMethod().equalsIgnoreCase("OPTIONS")) {
             ex.sendResponseHeaders(204, -1);
             ex.close();
