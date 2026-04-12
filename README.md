@@ -59,7 +59,7 @@ Start the server:
 
 `run.sh` builds the fat JAR via Maven, extracts `libmathlib.so` to `./lib/`, and starts the server. If the native library is not found, it runs `setup-native.sh` automatically before proceeding.
 
-Server starts on **http://localhost:8080**.
+Server starts on **http://localhost:8000**.
 
 ---
 
@@ -184,7 +184,7 @@ The schema uses the following type identifiers:
 ### Get all available functions
 
 ```bash
-curl http://localhost:8080/schema
+curl http://localhost:8000/schema
 ```
 
 ---
@@ -192,7 +192,7 @@ curl http://localhost:8080/schema
 ### Area of a circle
 
 ```bash
-curl -X POST http://localhost:8080/exec \
+curl -X POST http://localhost:8000/exec \
   -H "Content-Type: application/json" \
   -d '{"fn": "circle-area", "args": {"radius": 5}}'
 ```
@@ -206,7 +206,7 @@ curl -X POST http://localhost:8080/exec \
 ### Triangle area (Heron's formula)
 
 ```bash
-curl -X POST http://localhost:8080/exec \
+curl -X POST http://localhost:8000/exec \
   -H "Content-Type: application/json" \
   -d '{"fn": "triangle-area-3", "args": {"side-a": 3, "side-b": 4, "side-c": 5}}'
 ```
@@ -220,7 +220,7 @@ curl -X POST http://localhost:8080/exec \
 ### Factorial (large number)
 
 ```bash
-curl -X POST http://localhost:8080/exec \
+curl -X POST http://localhost:8000/exec \
   -H "Content-Type: application/json" \
   -d '{"fn": "factorial", "args": {"num": 25}}'
 ```
@@ -234,7 +234,7 @@ curl -X POST http://localhost:8080/exec \
 ### Statistical mean
 
 ```bash
-curl -X POST http://localhost:8080/exec \
+curl -X POST http://localhost:8000/exec \
   -H "Content-Type: application/json" \
   -d '{"fn": "mean", "args": {"dataset": [4, 8, 15, 16, 23, 42]}}'
 ```
@@ -248,7 +248,7 @@ curl -X POST http://localhost:8080/exec \
 ### Midpoint between two points
 
 ```bash
-curl -X POST http://localhost:8080/exec \
+curl -X POST http://localhost:8000/exec \
   -H "Content-Type: application/json" \
   -d '{"fn": "midpoint", "args": {"a-x": 0, "a-y": 0, "b-x": 4, "b-y": 6}}'
 ```
@@ -262,7 +262,7 @@ curl -X POST http://localhost:8080/exec \
 ### Prime factorization
 
 ```bash
-curl -X POST http://localhost:8080/exec \
+curl -X POST http://localhost:8000/exec \
   -H "Content-Type: application/json" \
   -d '{"fn": "prime-factors", "args": {"num": 360}}'
 ```
