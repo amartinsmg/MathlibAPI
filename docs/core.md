@@ -79,7 +79,7 @@ Converts return values to JSON-safe types:
 | Class | Extends | Purpose |
 |-------|---------|---------|
 | `ApiException` | `RuntimeException` | Carries an HTTP status code. Used as the final, serializable exception at the handler boundary. |
-| `BusinessException` | `RuntimeException` | Thrown from `MathService` when a domain rule is violated (e.g. `decimalPlaces < 0`). Converted to `ApiException` by `ApiCore`. |
+| `BusinessException` | `RuntimeException` | Thrown from `MathService` when a domain rule is violated (e.g. `selected > total` in combinatorics). Converted to `ApiException` by `ApiCore`. |
 | `ValidationException` | `ApiException` | Thrown by `SchemaValidator` for missing or out-of-range parameters. |
 | `FunctionNotFoundException` | `ApiException` | Thrown by `FunctionDispatcher` when no function matches the requested name. |
 | `ConversionException` | `ApiException` | Thrown by `TypeConverter` when a value cannot be coerced to the target type. |
