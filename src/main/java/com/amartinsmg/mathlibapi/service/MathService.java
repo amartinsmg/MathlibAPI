@@ -11,7 +11,9 @@ public class MathService {
     @ApiFunction(name = "triangle-area-1",
             namespace = "area-shape",
             description = "Calculates triangle area using base and height")
-    public static double triangleArea1(double base, double height) {
+    public static double triangleArea1(
+            @ApiParam(name = "base", min = 0) double base,
+            @ApiParam(name = "height", min = 0) double height) {
         return MathLibWrapper.triangleArea1(base, height);
     }
 
@@ -19,9 +21,9 @@ public class MathService {
             namespace = "area-shape",
             description = "Calculates triangle area two sides and the angle between them")
     public static double triangleArea2(
-            @ApiParam(name = "side-a") double sideA,
-            @ApiParam(name = "side-b") double sideB,
-            @ApiParam(name = "angle-between-a-and-b") double angleGama) {
+            @ApiParam(name = "side-a", min = 0) double sideA,
+            @ApiParam(name = "side-b", min = 0) double sideB,
+            @ApiParam(name = "angle-between-a-and-b", min = 0, max = Math.PI) double angleGama) {
         return MathLibWrapper.triangleArea2(sideA, sideB, angleGama);
     }
 
@@ -29,23 +31,25 @@ public class MathService {
             namespace = "area-shape",
             description = "Calculates triangle area using three sides (Heron's formula)")
     public static double triangleArea3(
-            @ApiParam(name = "side-a") double sideA,
-            @ApiParam(name = "side-b") double sideB,
-            @ApiParam(name = "side-c") double sideC) {
+            @ApiParam(name = "side-a", min = 0) double sideA,
+            @ApiParam(name = "side-b", min = 0) double sideB,
+            @ApiParam(name = "side-c", min = 0) double sideC) {
         return MathLibWrapper.triangleArea3(sideA, sideB, sideC);
     }
 
     @ApiFunction(name = "square-area",
             namespace = "area-shape",
             description = "Calculates square area")
-    public static double squareArea(double side) {
+    public static double squareArea(@ApiParam(name = "side", min = 0) double side) {
         return MathLibWrapper.squareArea(side);
     }
 
     @ApiFunction(name = "rectangle-area",
             namespace = "area-shape",
             description = "Calculates rectangle area")
-    public static double rectangleArea(double width, double length) {
+    public static double rectangleArea(
+            @ApiParam(name = "width", min = 0) double width,
+            @ApiParam(name = "length", min = 0) double length) {
         return MathLibWrapper.rectangleArea(width, length);
     }
 
@@ -53,15 +57,17 @@ public class MathService {
             namespace = "area-shape",
             description = "Calculates rhombus area")
     public static double rhombusArea(
-            @ApiParam(name = "larger-diagonal") double largerDiagonal,
-            @ApiParam(name = "smaller-diagonal") double smallerDiagonal) {
+            @ApiParam(name = "larger-diagonal", min = 0) double largerDiagonal,
+            @ApiParam(name = "smaller-diagonal", min = 0) double smallerDiagonal) {
         return MathLibWrapper.rhombusArea(largerDiagonal, smallerDiagonal);
     }
 
     @ApiFunction(name = "parallelogram-area-1",
             namespace = "area-shape",
             description = "Calculates parallelogram area using base and height")
-    public static double parallelogramArea1(double base, double height) {
+    public static double parallelogramArea1(
+            @ApiParam(name = "base", min = 0) double base,
+            @ApiParam(name = "height", min = 0) double height) {
         return MathLibWrapper.parallelogramArea1(base, height);
     }
 
@@ -69,9 +75,9 @@ public class MathService {
             namespace = "area-shape",
             description = "Calculates parallelogram area using two sides and the angle between them")
     public static double parallelogramArea2(
-            @ApiParam(name = "side-a") double sideA,
-            @ApiParam(name = "side-b") double sideB,
-            @ApiParam(name = "angle-between-a-and-b") double angleBeetweenAB) {
+            @ApiParam(name = "side-a", min = 0) double sideA,
+            @ApiParam(name = "side-b", min = 0) double sideB,
+            @ApiParam(name = "angle-between-a-and-b", min = 0, max = Math.PI) double angleBeetweenAB) {
         return MathLibWrapper.parallelogramArea2(sideA, sideB, angleBeetweenAB);
     }
 
@@ -79,9 +85,9 @@ public class MathService {
             namespace = "area-shape",
             description = "Calculates trapezoid area")
     public static double trapezoidArea(
-            @ApiParam(name = "larger-base") double largerBase,
-            @ApiParam(name = "smaller-base") double smallerBase,
-            double height) {
+            @ApiParam(name = "larger-base", min = 0) double largerBase,
+            @ApiParam(name = "smaller-base", min = 0) double smallerBase,
+            @ApiParam(name = "height", min = 0) double height) {
         return MathLibWrapper.trapezoidArea(largerBase, smallerBase, height);
     }
 
@@ -89,22 +95,24 @@ public class MathService {
             namespace = "area-shape",
             description = "Calculates regular polygon area")
     public static double regPolygonArea(
-            double side,
-            @ApiParam(name = "number-of-sides") int nOfSides) {
+            @ApiParam(name = "side", min = 0) double side,
+            @ApiParam(name = "number-of-sides", min = 3) int nOfSides) {
         return MathLibWrapper.regPolygonArea(side, nOfSides);
     }
 
     @ApiFunction(name = "circle-area",
             namespace = "area-shape",
             description = "Calculates circle area")
-    public static double circleArea(double radius) {
+    public static double circleArea(@ApiParam(name = "radius", min = 0) double radius) {
         return MathLibWrapper.circleArea(radius);
     }
 
     @ApiFunction(name = "circular-sector-area-1",
             namespace = "area-shape",
             description = "Calculates circular sector area using angle and radius")
-    public static double circularSectorArea1(double angle, double radius) {
+    public static double circularSectorArea1(
+            @ApiParam(name = "angle", min = 0, max = 2 * Math.PI) double angle,
+            @ApiParam(name = "radius", min = 0) double radius) {
         return MathLibWrapper.circularSectorArea1(angle, radius);
     }
 
@@ -112,8 +120,8 @@ public class MathService {
             namespace = "area-shape",
             description = "Calculates circular sector area using arc length and radius")
     public static double circularSectorArea2(
-            @ApiParam(name = "arc-length") double arc,
-            double radius) {
+            @ApiParam(name = "arc-length", min = 0) double arc,
+            @ApiParam(name = "radius", min = 0) double radius) {
         return MathLibWrapper.circularSectorArea2(arc, radius);
     }
 
@@ -121,22 +129,25 @@ public class MathService {
             namespace = "area-shape",
             description = "Calculates ellipse area")
     public static double ellipseArea(
-            @ApiParam(name = "semi-major-axis") double semiMajorAxis,
-            @ApiParam(name = "semi-minor-axis") double semiMinorAxis) {
+            @ApiParam(name = "semi-major-axis", min = 0) double semiMajorAxis,
+            @ApiParam(name = "semi-minor-axis", min = 0) double semiMinorAxis) {
         return MathLibWrapper.ellipseArea(semiMajorAxis, semiMinorAxis);
     }
 
     @ApiFunction(name = "cube-area",
             namespace = "area-surface",
             description = "Calculates cube surface area")
-    public static double cubeArea(double side) {
+    public static double cubeArea(@ApiParam(name = "side", min = 0) double side) {
         return MathLibWrapper.cubeArea(side);
     }
 
     @ApiFunction(name = "cuboid-area",
             namespace = "area-surface",
             description = "Calculates cuboid surface area")
-    public static double cuboidArea(double width, double length, double height) {
+    public static double cuboidArea(
+            @ApiParam(name = "width", min = 0) double width,
+            @ApiParam(name = "length", min = 0) double length,
+            @ApiParam(name = "height", min = 0) double height) {
         return MathLibWrapper.cuboidArea(width, length, height);
     }
 
@@ -144,9 +155,9 @@ public class MathService {
             namespace = "area-surface",
             description = "Calculates prism surface area")
     public static double prismArea(
-            @ApiParam(name = "base-area") double baseArea,
-            @ApiParam(name = "base-perimeter") double basePerimeter,
-            double height) {
+            @ApiParam(name = "base-area", min = 0) double baseArea,
+            @ApiParam(name = "base-perimeter", min = 0) double basePerimeter,
+            @ApiParam(name = "height", min = 0) double height) {
         return MathLibWrapper.prismArea(baseArea, basePerimeter, height);
     }
 
@@ -154,9 +165,9 @@ public class MathService {
             namespace = "area-surface",
             description = "Calculates regular prism surface area")
     public static double regularPrismArea(
-            @ApiParam(name = "base-side") double baseSide,
-            @ApiParam(name = "number-of-base-sides") int nOfBaseSides,
-            double height) {
+            @ApiParam(name = "base-side", min = 0) double baseSide,
+            @ApiParam(name = "number-of-base-sides", min = 3) int nOfBaseSides,
+            @ApiParam(name = "height", min = 0) double height) {
         return MathLibWrapper.regularPrismArea(baseSide, nOfBaseSides, height);
     }
 
@@ -164,9 +175,9 @@ public class MathService {
             namespace = "area-surface",
             description = "Calculates pyramid surface area")
     public static double pyramidArea(
-            @ApiParam(name = "base-area") double baseArea,
-            @ApiParam(name = "base-perimeter") double basePerimeter,
-            @ApiParam(name = "slant-height") double slantHeight) {
+            @ApiParam(name = "base-area", min = 0) double baseArea,
+            @ApiParam(name = "base-perimeter", min = 0) double basePerimeter,
+            @ApiParam(name = "slant-height", min = 0) double slantHeight) {
         return MathLibWrapper.pyramidArea(baseArea, basePerimeter, slantHeight);
     }
 
@@ -174,9 +185,9 @@ public class MathService {
             namespace = "area-surface",
             description = "Calculates regular pyramid surface area")
     public static double regPyramidArea(
-            @ApiParam(name = "base-side") double baseSide,
-            @ApiParam(name = "number-of-base-sides") int nOfBaseSides,
-            double height) {
+            @ApiParam(name = "base-side", min = 0) double baseSide,
+            @ApiParam(name = "number-of-base-sides", min = 3) int nOfBaseSides,
+            @ApiParam(name = "height", min = 0) double height) {
         return MathLibWrapper.regPyramidArea(baseSide, nOfBaseSides, height);
     }
 
@@ -184,8 +195,8 @@ public class MathService {
             namespace = "area-surface",
             description = "Calculates cylinder surface area")
     public static double cylinderArea(
-            @ApiParam(name = "base-radius") double baseRadius,
-            double height) {
+            @ApiParam(name = "base-radius", min = 0) double baseRadius,
+            @ApiParam(name = "height", min = 0) double height) {
         return MathLibWrapper.cylinderArea(baseRadius, height);
     }
 
@@ -193,15 +204,15 @@ public class MathService {
             namespace = "area-surface",
             description = "Calculates cone surface area")
     public static double coneArea(
-            @ApiParam(name = "base-radius") double baseRadius,
-            double height) {
+            @ApiParam(name = "base-radius", min = 0) double baseRadius,
+            @ApiParam(name = "height", min = 0) double height) {
         return MathLibWrapper.coneArea(baseRadius, height);
     }
 
     @ApiFunction(name = "sphere-area",
             namespace = "area-surface",
             description = "Calculates sphere surface area")
-    public static double sphereArea(double radius) {
+    public static double sphereArea(@ApiParam(name = "radius", min = 0) double radius) {
         return MathLibWrapper.sphereArea(radius);
     }
 
@@ -215,14 +226,18 @@ public class MathService {
     @ApiFunction(name = "logarithm",
             namespace = "basic-operations",
             description = "Calculates the logarithm of a number with a given base")
-    public static double logarithm(double num, double base) {
+    public static double logarithm(
+            @ApiParam(name = "num") double num,
+            @ApiParam(name = "base", min = 1e-9) double base) {
         return MathLibWrapper.logarithm(num, base);
     }
 
     @ApiFunction(name = "nth-root",
             namespace = "basic-operations",
             description = "Calculates the nth root of a number")
-    public static double nthRoot(double radicand, double degree) {
+    public static double nthRoot(
+            @ApiParam(name = "radicand") double radicand,
+            @ApiParam(name = "degree", min = 1e-9) double degree) {
         return MathLibWrapper.nthRoot(radicand, degree);
     }
 
@@ -231,21 +246,14 @@ public class MathService {
             description = "Rounds a number to a specified number of decimal places")
     public static double roundTo(
             double num,
-            @ApiParam(name = "decimal-places") int decimalPlaces) {
-        if (decimalPlaces < 0) {
-            throw new BusinessException("decimalPlaces must be >= 0");
-        }
+            @ApiParam(name = "decimal-places", min = 0) int decimalPlaces) {
         return MathLibWrapper.roundTo(num, decimalPlaces);
     }
 
     @ApiFunction(name = "permutation",
             namespace = "combinatorics",
             description = "Calculates the permutation of a number")
-    public static String permutationSmart(int num) {
-        if (num < 0) {
-            throw new BusinessException("num must be >= 0");
-        }
-
+    public static String permutationSmart(@ApiParam(name = "num", min = 0) int num) {
         if (num <= 20) {
             return String.valueOf(MathLibWrapper.permutation(num));
         }
@@ -262,11 +270,7 @@ public class MathService {
     @ApiFunction(name = "cycle-permutation",
             namespace = "combinatorics",
             description = "Calculates the cycle permutation of a number")
-    public static String cyclePermutationSmart(int num) {
-        if (num < 0) {
-            throw new BusinessException("num must be >= 0");
-        }
-
+    public static String cyclePermutationSmart(@ApiParam(name = "num", min = 0) int num) {
         if (num <= 20) {
             return String.valueOf(MathLibWrapper.cyclePermutation(num));
         }
@@ -283,17 +287,12 @@ public class MathService {
     @ApiFunction(name = "arrangement",
             namespace = "combinatorics",
             description = "Calculates the arrangement of selecting items from a total")
-    public static String arrangementSmart(int total, int selected) {
-        if (total <= 0) {
-            throw new BusinessException("total must be > 0");
-        }
-        if (selected < 0) {
-            throw new BusinessException("selected must be >= 0");
-        }
+    public static String arrangementSmart(
+            @ApiParam(name = "total", min = 1) int total,
+            @ApiParam(name = "selected", min = 0) int selected) {
         if (selected > total) {
-            throw new BusinessException("select must be <= total");
+            throw new BusinessException("selected must be <= total");
         }
-
         if (total <= 20) {
             return String.valueOf(MathLibWrapper.arrangement(total, selected));
         }
@@ -310,17 +309,12 @@ public class MathService {
     @ApiFunction(name = "combination",
             namespace = "combinatorics",
             description = "Calculates the combination of selecting items from a total")
-    public static String combinationSmart(int total, int selected) {
-        if (total <= 0) {
-            throw new BusinessException("total must be > 0");
-        }
-        if (selected < 0) {
-            throw new BusinessException("selected must be >= 0");
-        }
+    public static String combinationSmart(
+            @ApiParam(name = "total", min = 1) int total,
+            @ApiParam(name = "selected", min = 0) int selected) {
         if (selected > total) {
-            throw new BusinessException("select must be <= total");
+            throw new BusinessException("selected must be <= total");
         }
-
         if (total <= 20) {
             return String.valueOf(MathLibWrapper.combination(total, selected));
         }
@@ -337,10 +331,7 @@ public class MathService {
     @ApiFunction(name = "factorial",
             namespace = "combinatorics",
             description = "Calculates the factorial of a number")
-    public static String factorialSmart(int num) {
-        if (num < 0) {
-            throw new BusinessException("num must be >= 0");
-        }
+    public static String factorialSmart(@ApiParam(name = "num", min = 0) int num) {
         if (num <= 20) {
             return String.valueOf(MathLibWrapper.factorial(num));
         }
@@ -444,35 +435,35 @@ public class MathService {
     @ApiFunction(name = "circle-perimeter",
             namespace = "geometry",
             description = "Calculates the perimeter of a circle")
-    public static double circlePerimeter(double radius) {
+    public static double circlePerimeter(@ApiParam(name = "radius", min = 0) double radius) {
         return MathLibWrapper.circlePerimeter(radius);
     }
 
     @ApiFunction(name = "polygon-diagonals",
             namespace = "geometry",
             description = "Calculates the number of diagonals in a polygon")
-    public static int polygonDiagonals(@ApiParam(name = "number-of-sides") int nOfSides) {
+    public static int polygonDiagonals(@ApiParam(name = "number-of-sides", min = 3) int nOfSides) {
         return MathLibWrapper.polygonDiagonals(nOfSides);
     }
 
     @ApiFunction(name = "convex-polygon-sum-interior-angles",
             namespace = "geometry",
             description = "Calculates the sum of interior angles of a convex polygon")
-    public static double convexPolySumIntAng(@ApiParam(name = "number-of-sides") double nOfSides) {
+    public static double convexPolySumIntAng(@ApiParam(name = "number-of-sides", min = 3) double nOfSides) {
         return MathLibWrapper.convexPolySumIntAng(nOfSides);
     }
 
     @ApiFunction(name = "regular-polygon-interior-angle",
             namespace = "geometry",
             description = "Calculates the interior angle of a regular polygon")
-    public static double regPolygonIAng(@ApiParam(name = "number-of-sides") int nOfSides) {
+    public static double regPolygonIAng(@ApiParam(name = "number-of-sides", min = 3) int nOfSides) {
         return MathLibWrapper.regPolygonIAng(nOfSides);
     }
 
     @ApiFunction(name = "convex-polygon-exterior-angle",
             namespace = "geometry",
             description = "Calculates the exterior angle of a convex polygon")
-    public static double convexPolyExtAngle(@ApiParam(name = "number-of-sides") int nOfSides) {
+    public static double convexPolyExtAngle(@ApiParam(name = "number-of-sides", min = 3) int nOfSides) {
         return MathLibWrapper.convexPolyExtAngle(nOfSides);
     }
 
@@ -563,19 +554,18 @@ public class MathService {
             namespace = "probability",
             description = "Calculates the binomial distribution probability")
     public static double binominal(
-            int trials,
-            @ApiParam(name = "success-prob") double successProb,
-            int success) {
+            @ApiParam(name = "trials", min = 1) int trials,
+            @ApiParam(name = "success-prob", min = 0, max = 1) double successProb,
+            @ApiParam(name = "success", min = 0) int success) {
         return MathLibWrapper.binominal(trials, successProb, success);
     }
 
     @ApiFunction(name = "poisson",
             namespace = "probability",
             description = "Calculates the Poisson distribution probability")
-    public static double poisson(double lambda, int x) {
-        if (x < 0) {
-            throw new BusinessException("x must be >= 0");
-        }
+    public static double poisson(
+            @ApiParam(name = "lambda") double lambda,
+            @ApiParam(name = "x", min = 0) int x) {
         return MathLibWrapper.poisson(lambda, x);
     }
 
@@ -584,7 +574,7 @@ public class MathService {
             description = "Calculates the Gaussian Cumulative Distribution Function")
     public static double gaussianCDF(
             double mu,
-            @ApiParam(name = "std-dev") double stdDev,
+            @ApiParam(name = "std-dev", min = 1e-9) double stdDev,
             double x) {
         return MathLibWrapper.gaussianCDF(mu, stdDev, x);
     }
@@ -598,10 +588,10 @@ public class MathService {
 
     @ApiFunction(name = "trimmed-mean",
             namespace = "statistics",
-            description = "Calculates the trimmed mean of a dataset")
+            description = "Calculates the trimmed mean of a dataset, removing the given percentage of values from both the lower and upper ends before averaging")
     public static double trimmedMean(
             @ApiParam(name = "dataset") double[] arr,
-            double percentage) {
+            @ApiParam(name = "percentage", min = 0, max = 50) double percentage) {
         return MathLibWrapper.trimmedMean(arr, percentage);
     }
 
@@ -693,8 +683,8 @@ public class MathService {
             namespace = "trigonometry",
             description = "Calculates the hypotenuse of a right triangle")
     public static double hypotenuse(
-            @ApiParam(name = "side-a") double sideA,
-            @ApiParam(name = "side-b") double sideB
+            @ApiParam(name = "side-a", min = 0) double sideA,
+            @ApiParam(name = "side-b", min = 0) double sideB
     ) {
         return MathLibWrapper.hypotenuse(sideA, sideB);
     }
@@ -703,8 +693,8 @@ public class MathService {
             namespace = "trigonometry",
             description = "Calculates a side of a right triangle")
     public static double sideRTriangle(
-            double hypotenuse,
-            @ApiParam(name = "side-a") double sideA
+            @ApiParam(name = "hypotenuse", min = 0) double hypotenuse,
+            @ApiParam(name = "side-a", min = 0) double sideA
     ) {
         return MathLibWrapper.sideRTriangle(hypotenuse, sideA);
     }
@@ -713,9 +703,9 @@ public class MathService {
             namespace = "trigonometry",
             description = "Calculates a triangle side using the Law of Cosines")
     public static double sideTriangleLC(
-            @ApiParam(name = "side-a") double sideA,
-            @ApiParam(name = "side-b") double sideB,
-            @ApiParam(name = "opposite-ang") double oppositeAng) {
+            @ApiParam(name = "side-a", min = 0) double sideA,
+            @ApiParam(name = "side-b", min = 0) double sideB,
+            @ApiParam(name = "opposite-ang", min = 0, max = Math.PI) double oppositeAng) {
         return MathLibWrapper.sideTriangleLC(sideA, sideB, oppositeAng);
     }
 
@@ -723,9 +713,9 @@ public class MathService {
             namespace = "trigonometry",
             description = "Calculates a triangle angle using the Law of Cosines")
     public static double angTriangleLC(
-            @ApiParam(name = "opposite-side") double oppositeSide,
-            @ApiParam(name = "side-a") double sideA,
-            @ApiParam(name = "side-b") double sideB) {
+            @ApiParam(name = "opposite-side", min = 0) double oppositeSide,
+            @ApiParam(name = "side-a", min = 0) double sideA,
+            @ApiParam(name = "side-b", min = 0) double sideB) {
         return MathLibWrapper.angTriangleLC(oppositeSide, sideA, sideB);
     }
 
@@ -733,9 +723,9 @@ public class MathService {
             namespace = "trigonometry",
             description = "Calculates a triangle side using the Law of Sines")
     public static double sideTriangleLS(
-            @ApiParam(name = "opposite-ang") double oppositeAng,
-            @ApiParam(name = "side-a") double sideA,
-            @ApiParam(name = "opposite-ang-a") double oppositeAng2A) {
+            @ApiParam(name = "opposite-ang", min = 0, max = Math.PI) double oppositeAng,
+            @ApiParam(name = "side-a", min = 0) double sideA,
+            @ApiParam(name = "opposite-ang-a", min = 0, max = Math.PI) double oppositeAng2A) {
         return MathLibWrapper.sideTriangleLS(oppositeAng, sideA, oppositeAng2A);
     }
 
@@ -743,23 +733,26 @@ public class MathService {
             namespace = "trigonometry",
             description = "Calculates a triangle angle using the Law of Sines")
     public static double angTriangleLS(
-            @ApiParam(name = "opposite-side") double oppositeSide,
-            @ApiParam(name = "side-a") double sideA,
-            @ApiParam(name = "opposite-ang-a") double oppositeAng2A) {
+            @ApiParam(name = "opposite-side", min = 0) double oppositeSide,
+            @ApiParam(name = "side-a", min = 0) double sideA,
+            @ApiParam(name = "opposite-ang-a", min = 0, max = Math.PI) double oppositeAng2A) {
         return MathLibWrapper.angTriangleLS(oppositeSide, sideA, oppositeAng2A);
     }
 
     @ApiFunction(name = "cube-volume",
             namespace = "volume",
             description = "Calculates the volume of a cube")
-    public static double cubeVol(double side) {
+    public static double cubeVol(@ApiParam(name = "side", min = 0) double side) {
         return MathLibWrapper.cubeVol(side);
     }
 
     @ApiFunction(name = "cuboid-volume",
             namespace = "volume",
             description = "Calculates the volume of a cuboid")
-    public static double cuboidVol(double length, double width, double height) {
+    public static double cuboidVol(
+            @ApiParam(name = "length", min = 0) double length,
+            @ApiParam(name = "width", min = 0) double width,
+            @ApiParam(name = "height", min = 0) double height) {
         return MathLibWrapper.cuboidVol(length, width, height);
     }
 
@@ -767,8 +760,8 @@ public class MathService {
             namespace = "volume",
             description = "Calculates the volume of a prism")
     public static double prismVol(
-            @ApiParam(name = "base-area") double baseArea,
-            double height) {
+            @ApiParam(name = "base-area", min = 0) double baseArea,
+            @ApiParam(name = "height", min = 0) double height) {
         return MathLibWrapper.prismVol(baseArea, height);
     }
 
@@ -776,9 +769,9 @@ public class MathService {
             namespace = "volume",
             description = "Calculates the volume of a regular prism")
     public static double regularPrismVol(
-            @ApiParam(name = "base-side") double baseSide,
-            @ApiParam(name = "number-of-base-sides") int nOfBaseSides,
-            double height) {
+            @ApiParam(name = "base-side", min = 0) double baseSide,
+            @ApiParam(name = "number-of-base-sides", min = 3) int nOfBaseSides,
+            @ApiParam(name = "height", min = 0) double height) {
         return MathLibWrapper.regularPrismVol(baseSide, nOfBaseSides, height);
     }
 
@@ -786,8 +779,8 @@ public class MathService {
             namespace = "volume",
             description = "Calculates the volume of a pyramid")
     public static double pyramidVol(
-            @ApiParam(name = "base-area") double baseArea,
-            double height) {
+            @ApiParam(name = "base-area", min = 0) double baseArea,
+            @ApiParam(name = "height", min = 0) double height) {
         return MathLibWrapper.pyramidVol(baseArea, height);
     }
 
@@ -795,9 +788,9 @@ public class MathService {
             namespace = "volume",
             description = "Calculates the volume of a regular pyramid")
     public static double regPyramidVol(
-            @ApiParam(name = "base-side") double baseSide,
-            @ApiParam(name = "number-of-base-sides") int nOfBaseSides,
-            double height) {
+            @ApiParam(name = "base-side", min = 0) double baseSide,
+            @ApiParam(name = "number-of-base-sides", min = 3) int nOfBaseSides,
+            @ApiParam(name = "height", min = 0) double height) {
         return MathLibWrapper.regPyramidVol(baseSide, nOfBaseSides, height);
     }
 
@@ -805,8 +798,8 @@ public class MathService {
             namespace = "volume",
             description = "Calculates the volume of a cylinder")
     public static double cylinderVol(
-            @ApiParam(name = "base-radius") double baseRadius,
-            double height) {
+            @ApiParam(name = "base-radius", min = 0) double baseRadius,
+            @ApiParam(name = "height", min = 0) double height) {
         return MathLibWrapper.cylinderVol(baseRadius, height);
     }
 
@@ -814,15 +807,15 @@ public class MathService {
             namespace = "volume",
             description = "Calculates the volume of a cone")
     public static double coneVol(
-            @ApiParam(name = "base-radius") double baseRadius,
-            double height) {
+            @ApiParam(name = "base-radius", min = 0) double baseRadius,
+            @ApiParam(name = "height", min = 0) double height) {
         return MathLibWrapper.coneVol(baseRadius, height);
     }
 
     @ApiFunction(name = "sphere-volume",
             namespace = "volume",
             description = "Calculates the volume of a sphere")
-    public static double sphereVol(double radius) {
+    public static double sphereVol(@ApiParam(name = "radius", min = 0) double radius) {
         return MathLibWrapper.sphereVol(radius);
     }
 }
