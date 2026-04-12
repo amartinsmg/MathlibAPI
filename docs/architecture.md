@@ -17,6 +17,12 @@ The server is built on top of `com.sun.net.httpserver` — the lightweight HTTP 
                              │ GET /schema  │  POST /exec
                              ▼
 ┌──────────────────────────────────────────────────────────┐
+│                      CorsFilter                          │
+│   CORS headers · preflight OPTIONS handling (HTTP 204)   │
+└──────────┬───────────────────────────────────────────────┘
+           │
+           ▼
+┌──────────────────────────────────────────────────────────┐
 │                    App.java (entry point)                 │
 │         HttpServer · route registration · wiring         │
 └──────────┬───────────────────────────────────────────────┘
@@ -96,6 +102,9 @@ com.amartinsmg.mathlibapi
 │           ├── FunctionSchema   In-memory representation of a function's schema
 │           └── ParamSchema      In-memory representation of a parameter's schema
 │
+├── filter/
+│   └── CorsFilter               CORS response headers + OPTIONS preflight handling
+│
 ├── handler/
 │   └── RouterHandler            HTTP method validation + centralized error handling
 │
@@ -118,6 +127,8 @@ com.amartinsmg.mathlibapi
 ## Key Design Decisions
 
 **Single execution endpoint.** All functions are called through `POST /exec` using a `{ "fn": "...", "args": {...} }` envelope. This avoids URL proliferation and allows the API surface to grow — new functions in `MathService` become available automatically without touching routing code.
+
+**CORS** via `HttpServer` **filter chain**. `CorsFilter` extends `com.sun.net.httpserver.Filter` and is attached directly to each `HttpContext` via `getFilters().add()`. This hooks into the JDK's built-in filter chain, so CORS headers are injected and `OPTIONS` preflight requests are short-circuited before reaching `RouterHandler` or any application logic — without any middleware framework.
 
 **Annotation-driven registration.** `@ApiFunction` and `@ApiParam` on `MathService` methods are the sole source of truth for both the public schema and runtime validation. There is no separate configuration file or manual registration step.
 
