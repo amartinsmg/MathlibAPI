@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.amartinsmg.mathlibapi.core.ApiCore;
 import com.amartinsmg.mathlibapi.core.exceptions.ApiException;
+import com.amartinsmg.mathlibapi.filter.CorsFilter;
 import com.amartinsmg.mathlibapi.handler.RouterHandler;
 import com.amartinsmg.mathlibapi.service.MathService;
 import com.amartinsmg.mathlibapi.utils.JsonUtils;
@@ -15,7 +16,7 @@ public class App {
     public static void main(String[] args) throws Exception {
         ApiCore core = new ApiCore(MathService.class);
 
-        HttpServer server = HttpServer.create(new InetSocketAddress(8080), 0);
+        HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
 
         server.createContext("/schema", exchange -> {
             new RouterHandler("GET", ex -> {
@@ -27,7 +28,7 @@ public class App {
                 ex.getResponseBody().write(json.getBytes());
                 ex.close();
             }).handle(exchange);
-        });
+        }).getFilters().add(new CorsFilter());
 
         server.createContext("/exec", exchange -> {
             new RouterHandler("POST", ex -> {
@@ -65,9 +66,9 @@ public class App {
                 ex.getResponseBody().write(json.getBytes());
                 ex.close();
             }).handle(exchange);
-        });
+        }).getFilters().add(new CorsFilter());
 
         server.start();
-        System.out.println("Server running on http://localhost:8080");
+        System.out.println("Server running on http://localhost:8000");
     }
 }
