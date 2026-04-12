@@ -18,13 +18,18 @@ public class SchemaValidator {
         }
         for (ParamSchema p : fn.params) {
             if (!args.containsKey(p.name)) {
-                throw new ValidationException("Missing argument: " + p.name);
+                throw new ValidationException("Missing argument: '" + p.name + "'");
             }
-            Object typeDef = p.type;
-            if (!isValidType(typeDef, args.get(p.name))) {
+            var typeDef = p.type;
+            if (!isValidType(p.type, args.get(p.name))) {
                 throw new ValidationException(
-                        "Invalid argument " + p.name
-                        + ": expected " + typeDef.toString());
+                        "Invalid argument '" + p.name
+                        + "': expected " + typeDef.toString());
+            }
+            if (!isValidRange(args.get(p.name), p.min, p.max)) {
+                throw new ValidationException(
+                        "Argument '" + p.name + "' out of range ["
+                        + p.min + ", " + p.max + "]");
             }
         }
     }
@@ -88,6 +93,19 @@ public class SchemaValidator {
         }
 
         return false;
+    }
+
+    public static boolean isValidRange(Object arg, Number min, Number max) {
+        if (!(arg instanceof Number num)) {
+            return true;
+        }
+
+        Double n = num.doubleValue();
+
+        if (min != null && n < min.doubleValue()) {
+            return false;
+        }
+        return !(max != null && n > max.doubleValue());
     }
 
     public static boolean isWholeNumber(Number n) {
