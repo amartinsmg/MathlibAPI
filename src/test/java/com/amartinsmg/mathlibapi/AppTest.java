@@ -123,7 +123,7 @@ public class AppTest {
             String pName = (String) p.get("name");
             var pType = p.get("type");
 
-            args.put(pName, generateValue(pType));
+            args.put(pName, generateValue(pType, p.get("min")));
         }
 
         String body = JsonUtils.toJson(Map.of(
@@ -145,13 +145,13 @@ public class AppTest {
                 "Error in function: " + fn.get("name"));
     }
 
-    static Object generateValue(Object type) {
+    static Object generateValue(Object type, Object min) {
         if (type instanceof String t) {
             return switch (t) {
                 case "int32", "int64" ->
-                    1;
+                    min instanceof Number ? min : 1;
                 case "float", "double" ->
-                    1.0;
+                    min instanceof Number ? min : 1.0;
                 case "string" ->
                     "test";
                 case "boolean" ->
@@ -167,9 +167,9 @@ public class AppTest {
             if ("array".equals(typeName)) {
                 var itemType = map.get("items");
                 return List.of(
-                        generateValue(itemType),
-                        generateValue(itemType),
-                        generateValue(itemType));
+                        generateValue(itemType, null),
+                        generateValue(itemType, null),
+                        generateValue(itemType, null));
             }
             if ("object".equals(typeName)) {
                 var props = (Map<String, Object>) map.get("properties");
@@ -178,7 +178,7 @@ public class AppTest {
                 for (Map.Entry<String, Object> e : props.entrySet()) {
                     String key = e.getKey();
                     var fieldType = e.getValue();
-                    var value = generateValue(fieldType);
+                    var value = generateValue(fieldType, null);
                     obj.put(key, value);
                 }
                 return obj;
