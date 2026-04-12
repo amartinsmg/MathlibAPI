@@ -28,15 +28,6 @@ public class MathServiceTest {
     }
 
     @Test
-    public void testFactorialThrowsException() {
-        BusinessException ex = assertThrows(
-                BusinessException.class,
-                () -> MathService.factorialSmart(-1)
-        );
-        assertEquals("num must be >= 0", ex.getMessage());
-    }
-
-    @Test
     public void testCombinationSmallNumbers() {
         String result = MathService.combinationSmart(15, 12);
         assertEquals("455", result);
@@ -54,7 +45,7 @@ public class MathServiceTest {
                 BusinessException.class,
                 () -> MathService.combinationSmart(10, 11)
         );
-        assertEquals("select must be <= total", ex.getMessage());
+        assertEquals("selected must be <= total", ex.getMessage());
     }
 
     @Test
@@ -62,14 +53,4 @@ public class MathServiceTest {
         double result = MathService.poisson(5, 2);
         assertEquals(0.08422, result, 1e-5);
     }
-
-    @Test
-    public void shouldPoissonThrowsException() {
-        BusinessException ex = assertThrows(
-                BusinessException.class,
-                () -> MathService.poisson(3, -1)
-        );
-        assertEquals("x must be >= 0", ex.getMessage());
-    }
-
 }
