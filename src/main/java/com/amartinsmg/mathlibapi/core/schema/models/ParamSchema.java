@@ -4,4 +4,6 @@ public class ParamSchema {
 
     public String name;
     public Object type;
+    public Number min;
+    public Number max;
 }
