@@ -63,21 +63,16 @@ This strategy applies to `permutation`, `cycle-permutation`, `arrangement`, `com
 
 ## Business Validation
 
-`MathService` is responsible for domain rules that go beyond simple range checks. When a rule is violated, it throws `BusinessException`, which `ApiCore` intercepts and converts to an `ApiException`.
+`MathService` is responsible for domain rules that cannot be expressed as simple `min`/`max` constraints in `@ApiParam`. When a rule is violated, it throws `BusinessException`, which `ApiCore` intercepts and converts to an `ApiException`.
 
 Examples from the codebase:
 
 | Function | Validation |
 |----------|-----------|
-| `round-to` | `decimalPlaces >= 0` |
-| `factorial` | `num >= 0` |
-| `permutation` | `num >= 0` |
-| `cycle-permutation` | `num >= 0` |
-| `arrangement` | `total > 0`, `selected >= 0`, `selected <= total` |
-| `combination` | `total > 0`, `selected >= 0`, `selected <= total` |
-| `poisson` | `x >= 0` |
+| `arrangement` | `selected <= total` |
+| `combination` | `selected <= total` |
 
-These checks run after schema validation (which covers `@ApiParam` min/max) and before the native call.
+The remaining validations — `num >= 0` for combinatorics functions, `x >= 0` for poisson, and decimal-places `>= 0` for round-to — are now handled declaratively via `@ApiParam(min = 0)` and enforced by `SchemaValidator` before the method is even invoked.
 
 ---
 
