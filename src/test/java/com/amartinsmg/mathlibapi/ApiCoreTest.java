@@ -30,7 +30,7 @@ public class ApiCoreTest {
                 ValidationException.class,
                 () -> core.execEngine("prime-factors", args)
         );
-        assertEquals("Invalid argument num: expected int64", ex.getMessage());
+        assertEquals("Invalid argument 'num': expected int64", ex.getMessage());
     }
 
     @Test
