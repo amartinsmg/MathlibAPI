@@ -10,4 +10,6 @@ import java.lang.annotation.Target;
 public @interface ApiParam {
 
     String name() default "";
+    double min() default Double.NaN;
+    double max() default Double.NaN;
 }
