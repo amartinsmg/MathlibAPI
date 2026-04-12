@@ -66,6 +66,12 @@ public class SchemaGenerator {
                 Map<String, Object> paramMap = new HashMap<>();
                 paramMap.put("name", p.name);
                 paramMap.put("type", p.type);
+                if (p.min != null) {
+                    paramMap.put("min", p.min);
+                }
+                if (p.max != null) {
+                    paramMap.put("max", p.max);
+                }
 
                 paramList.add(paramMap);
             }
@@ -95,6 +101,12 @@ public class SchemaGenerator {
                     : p.getName();
             arg.name = name;
             arg.type = formattType(p.getType());
+            if (apiParam != null && !Double.isNaN(apiParam.min())) {
+                arg.min = apiParam.min();
+            }
+            if (apiParam != null && !Double.isNaN(apiParam.max())) {
+                arg.max = apiParam.min();
+            }
             args.add(arg);
         }
 
