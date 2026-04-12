@@ -118,7 +118,7 @@ Validates the incoming `args` map against the `FunctionSchema` before execution.
 ### Validation rules
 
 - **Required parameters:** Every parameter declared in the schema must have a corresponding key in `args`. Missing keys are rejected.
-- **Min/max constraints:** If `@ApiParam` declares a `min` or `max` (i.e. the value is not `NaN`), the argument value is checked against that bound. This applies to numeric types only.
+- **Min/max constraints:** If `@ApiParam` declares a `min` or `max`, the argument value is checked against that bound. This applies to numeric types only.
 
 Business-level validation (e.g. ensuring `total >= selected` in combinatorics) is **not** handled here — those checks live in `MathService` and throw `BusinessException`.
 
@@ -141,6 +141,6 @@ params      List<ParamSchema>
 ```
 name   String   — public parameter name (from @ApiParam or Java parameter name)
 type   Object   — schema type descriptor
-min    double   — lower bound (NaN if unconstrained)
-max    double   — upper bound (NaN if unconstrained)
+min    Number   — lower bound (null if unconstrained)
+max    Number   — upper bound (null if unconstrained)
 ```
