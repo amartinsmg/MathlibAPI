@@ -1,0 +1,1239 @@
+[ {
+  "name" : "is-armstrong",
+  "namespace" : "number-theory",
+  "description" : "Checks if a number is an Armstrong number",
+  "params" : [ {
+    "name" : "num",
+    "type" : "int64"
+  } ],
+  "returnType" : "boolean"
+}, {
+  "name" : "cylinder-area",
+  "namespace" : "area-surface",
+  "description" : "Calculates cylinder surface area",
+  "params" : [ {
+    "min" : 0.0,
+    "name" : "base-radius",
+    "type" : "double"
+  }, {
+    "min" : 0.0,
+    "name" : "height",
+    "type" : "double"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "is-happy",
+  "namespace" : "number-theory",
+  "description" : "Checks if a number is a happy number",
+  "params" : [ {
+    "name" : "num",
+    "type" : "int64"
+  } ],
+  "returnType" : "boolean"
+}, {
+  "name" : "sphere-area",
+  "namespace" : "area-surface",
+  "description" : "Calculates sphere surface area",
+  "params" : [ {
+    "min" : 0.0,
+    "name" : "radius",
+    "type" : "double"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "gcd",
+  "namespace" : "number-theory",
+  "description" : "Calculates the greatest common divisor of two numbers",
+  "params" : [ {
+    "name" : "x",
+    "type" : "int64"
+  }, {
+    "name" : "y",
+    "type" : "int64"
+  } ],
+  "returnType" : "int64"
+}, {
+  "name" : "ellipse-area",
+  "namespace" : "area-shape",
+  "description" : "Calculates ellipse area",
+  "params" : [ {
+    "min" : 0.0,
+    "name" : "semi-major-axis",
+    "type" : "double"
+  }, {
+    "min" : 0.0,
+    "name" : "semi-minor-axis",
+    "type" : "double"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "distance-point-line",
+  "namespace" : "geometry",
+  "description" : "Calculates the distance from a point to a line",
+  "params" : [ {
+    "name" : "inclination",
+    "type" : "double"
+  }, {
+    "name" : "y-intercept",
+    "type" : "double"
+  }, {
+    "name" : "p-x",
+    "type" : "double"
+  }, {
+    "name" : "p-y",
+    "type" : "double"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "deg-to-rad",
+  "namespace" : "geometry",
+  "description" : "Converts degrees to radians",
+  "params" : [ {
+    "name" : "degrees",
+    "type" : "double"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "mode",
+  "namespace" : "statistics",
+  "description" : "Calculates the mode of a dataset",
+  "params" : [ {
+    "name" : "dataset",
+    "type" : {
+      "type" : "array",
+      "items" : "double"
+    }
+  } ],
+  "returnType" : {
+    "type" : "array",
+    "items" : "double"
+  }
+}, {
+  "name" : "arrangement",
+  "namespace" : "combinatorics",
+  "description" : "Calculates the arrangement of selecting items from a total",
+  "params" : [ {
+    "min" : 1.0,
+    "name" : "total",
+    "type" : "int32"
+  }, {
+    "min" : 0.0,
+    "name" : "selected",
+    "type" : "int32"
+  } ],
+  "returnType" : "string"
+}, {
+  "name" : "is-perfect",
+  "namespace" : "number-theory",
+  "description" : "Checks if a number is a perfect number",
+  "params" : [ {
+    "name" : "num",
+    "type" : "int64"
+  } ],
+  "returnType" : "boolean"
+}, {
+  "name" : "prism-area",
+  "namespace" : "area-surface",
+  "description" : "Calculates prism surface area",
+  "params" : [ {
+    "min" : 0.0,
+    "name" : "base-area",
+    "type" : "double"
+  }, {
+    "min" : 0.0,
+    "name" : "base-perimeter",
+    "type" : "double"
+  }, {
+    "min" : 0.0,
+    "name" : "height",
+    "type" : "double"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "midrange",
+  "namespace" : "statistics",
+  "description" : "Calculates the midrange of a dataset",
+  "params" : [ {
+    "name" : "dataset",
+    "type" : {
+      "type" : "array",
+      "items" : "double"
+    }
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "ang-triangle-law-of-cos",
+  "namespace" : "trigonometry",
+  "description" : "Calculates a triangle angle using the Law of Cosines",
+  "params" : [ {
+    "min" : 0.0,
+    "name" : "opposite-side",
+    "type" : "double"
+  }, {
+    "min" : 0.0,
+    "name" : "side-a",
+    "type" : "double"
+  }, {
+    "min" : 0.0,
+    "name" : "side-b",
+    "type" : "double"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "midpoint",
+  "namespace" : "geometry",
+  "description" : "Calculates the midpoint between two points",
+  "params" : [ {
+    "name" : "a-x",
+    "type" : "double"
+  }, {
+    "name" : "a-y",
+    "type" : "double"
+  }, {
+    "name" : "b-x",
+    "type" : "double"
+  }, {
+    "name" : "b-y",
+    "type" : "double"
+  } ],
+  "returnType" : {
+    "type" : "object",
+    "properties" : {
+      "x" : "double",
+      "y" : "double"
+    }
+  }
+}, {
+  "name" : "cube-volume",
+  "namespace" : "volume",
+  "description" : "Calculates the volume of a cube",
+  "params" : [ {
+    "min" : 0.0,
+    "name" : "side",
+    "type" : "double"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "std-dev",
+  "namespace" : "statistics",
+  "description" : "Calculates the standard deviation of a dataset",
+  "params" : [ {
+    "name" : "dataset",
+    "type" : {
+      "type" : "array",
+      "items" : "double"
+    }
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "side-right-triangle",
+  "namespace" : "trigonometry",
+  "description" : "Calculates a side of a right triangle",
+  "params" : [ {
+    "min" : 0.0,
+    "name" : "hypotenuse",
+    "type" : "double"
+  }, {
+    "min" : 0.0,
+    "name" : "side-a",
+    "type" : "double"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "pyramid-volume",
+  "namespace" : "volume",
+  "description" : "Calculates the volume of a pyramid",
+  "params" : [ {
+    "min" : 0.0,
+    "name" : "base-area",
+    "type" : "double"
+  }, {
+    "min" : 0.0,
+    "name" : "height",
+    "type" : "double"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "rhombus-area",
+  "namespace" : "area-shape",
+  "description" : "Calculates rhombus area",
+  "params" : [ {
+    "min" : 0.0,
+    "name" : "larger-diagonal",
+    "type" : "double"
+  }, {
+    "min" : 0.0,
+    "name" : "smaller-diagonal",
+    "type" : "double"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "combination",
+  "namespace" : "combinatorics",
+  "description" : "Calculates the combination of selecting items from a total",
+  "params" : [ {
+    "min" : 1.0,
+    "name" : "total",
+    "type" : "int32"
+  }, {
+    "min" : 0.0,
+    "name" : "selected",
+    "type" : "int32"
+  } ],
+  "returnType" : "string"
+}, {
+  "name" : "line-y-intercept",
+  "namespace" : "geometry",
+  "description" : "Calculates the y-intercept of a line",
+  "params" : [ {
+    "name" : "a-x",
+    "type" : "double"
+  }, {
+    "name" : "a-y",
+    "type" : "double"
+  }, {
+    "name" : "b-x",
+    "type" : "double"
+  }, {
+    "name" : "b-y",
+    "type" : "double"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "hypotenuse",
+  "namespace" : "trigonometry",
+  "description" : "Calculates the hypotenuse of a right triangle",
+  "params" : [ {
+    "min" : 0.0,
+    "name" : "side-a",
+    "type" : "double"
+  }, {
+    "min" : 0.0,
+    "name" : "side-b",
+    "type" : "double"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "cube-area",
+  "namespace" : "area-surface",
+  "description" : "Calculates cube surface area",
+  "params" : [ {
+    "min" : 0.0,
+    "name" : "side",
+    "type" : "double"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "poisson",
+  "namespace" : "probability",
+  "description" : "Calculates the Poisson distribution probability",
+  "params" : [ {
+    "name" : "lambda",
+    "type" : "double"
+  }, {
+    "min" : 0.0,
+    "name" : "x",
+    "type" : "int32"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "sample-variance",
+  "namespace" : "statistics",
+  "description" : "Calculates the sample variance of a dataset",
+  "params" : [ {
+    "name" : "dataset",
+    "type" : {
+      "type" : "array",
+      "items" : "double"
+    }
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "circle-area",
+  "namespace" : "area-shape",
+  "description" : "Calculates circle area",
+  "params" : [ {
+    "min" : 0.0,
+    "name" : "radius",
+    "type" : "double"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "binomial",
+  "namespace" : "probability",
+  "description" : "Calculates the binomial distribution probability",
+  "params" : [ {
+    "min" : 1.0,
+    "name" : "trials",
+    "type" : "int32"
+  }, {
+    "min" : 0.0,
+    "max" : 0.0,
+    "name" : "success-prob",
+    "type" : "double"
+  }, {
+    "min" : 0.0,
+    "name" : "success",
+    "type" : "int32"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "cone-volume",
+  "namespace" : "volume",
+  "description" : "Calculates the volume of a cone",
+  "params" : [ {
+    "min" : 0.0,
+    "name" : "base-radius",
+    "type" : "double"
+  }, {
+    "min" : 0.0,
+    "name" : "height",
+    "type" : "double"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "compound-growth-rate",
+  "namespace" : "finance",
+  "description" : "Calculates the compound growth rate",
+  "params" : [ {
+    "name" : "initial",
+    "type" : "double"
+  }, {
+    "name" : "final",
+    "type" : "double"
+  }, {
+    "name" : "interval",
+    "type" : "double"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "convex-polygon-exterior-angle",
+  "namespace" : "geometry",
+  "description" : "Calculates the exterior angle of a convex polygon",
+  "params" : [ {
+    "min" : 3.0,
+    "name" : "number-of-sides",
+    "type" : "int32"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "regular-prism-volume",
+  "namespace" : "volume",
+  "description" : "Calculates the volume of a regular prism",
+  "params" : [ {
+    "min" : 0.0,
+    "name" : "base-side",
+    "type" : "double"
+  }, {
+    "min" : 3.0,
+    "name" : "number-of-base-sides",
+    "type" : "int32"
+  }, {
+    "min" : 0.0,
+    "name" : "height",
+    "type" : "double"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "side-triangle-law-of-sin",
+  "namespace" : "trigonometry",
+  "description" : "Calculates a triangle side using the Law of Sines",
+  "params" : [ {
+    "min" : 0.0,
+    "max" : 0.0,
+    "name" : "opposite-ang",
+    "type" : "double"
+  }, {
+    "min" : 0.0,
+    "name" : "side-a",
+    "type" : "double"
+  }, {
+    "min" : 0.0,
+    "max" : 0.0,
+    "name" : "opposite-ang-a",
+    "type" : "double"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "median",
+  "namespace" : "statistics",
+  "description" : "Calculates the median of a dataset",
+  "params" : [ {
+    "name" : "dataset",
+    "type" : {
+      "type" : "array",
+      "items" : "double"
+    }
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "sample-std-dev",
+  "namespace" : "statistics",
+  "description" : "Calculates the sample standard deviation of a dataset",
+  "params" : [ {
+    "name" : "dataset",
+    "type" : {
+      "type" : "array",
+      "items" : "double"
+    }
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "prime-factors",
+  "namespace" : "number-theory",
+  "description" : "Calculates the prime factors of a number",
+  "params" : [ {
+    "name" : "num",
+    "type" : "int64"
+  } ],
+  "returnType" : {
+    "type" : "array",
+    "items" : "int64"
+  }
+}, {
+  "name" : "n-is-what-percent-of-x",
+  "namespace" : "percentage",
+  "description" : "Calculates what percentage n is of x",
+  "params" : [ {
+    "name" : "x",
+    "type" : "double"
+  }, {
+    "name" : "n",
+    "type" : "double"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "cylinder-volume",
+  "namespace" : "volume",
+  "description" : "Calculates the volume of a cylinder",
+  "params" : [ {
+    "min" : 0.0,
+    "name" : "base-radius",
+    "type" : "double"
+  }, {
+    "min" : 0.0,
+    "name" : "height",
+    "type" : "double"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "logarithm",
+  "namespace" : "basic-operations",
+  "description" : "Calculates the logarithm of a number with a given base",
+  "params" : [ {
+    "name" : "num",
+    "type" : "double"
+  }, {
+    "min" : 1.0E-9,
+    "name" : "base",
+    "type" : "double"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "ang-triangle-law-of-sin",
+  "namespace" : "trigonometry",
+  "description" : "Calculates a triangle angle using the Law of Sines",
+  "params" : [ {
+    "min" : 0.0,
+    "name" : "opposite-side",
+    "type" : "double"
+  }, {
+    "min" : 0.0,
+    "name" : "side-a",
+    "type" : "double"
+  }, {
+    "min" : 0.0,
+    "max" : 0.0,
+    "name" : "opposite-ang-a",
+    "type" : "double"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "regular-polygon-area",
+  "namespace" : "area-shape",
+  "description" : "Calculates regular polygon area",
+  "params" : [ {
+    "min" : 0.0,
+    "name" : "side",
+    "type" : "double"
+  }, {
+    "min" : 3.0,
+    "name" : "number-of-sides",
+    "type" : "int32"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "factorial",
+  "namespace" : "combinatorics",
+  "description" : "Calculates the factorial of a number",
+  "params" : [ {
+    "min" : 0.0,
+    "name" : "num",
+    "type" : "int32"
+  } ],
+  "returnType" : "string"
+}, {
+  "name" : "cuboid-volume",
+  "namespace" : "volume",
+  "description" : "Calculates the volume of a cuboid",
+  "params" : [ {
+    "min" : 0.0,
+    "name" : "length",
+    "type" : "double"
+  }, {
+    "min" : 0.0,
+    "name" : "width",
+    "type" : "double"
+  }, {
+    "min" : 0.0,
+    "name" : "height",
+    "type" : "double"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "regular-polygon-interior-angle",
+  "namespace" : "geometry",
+  "description" : "Calculates the interior angle of a regular polygon",
+  "params" : [ {
+    "min" : 3.0,
+    "name" : "number-of-sides",
+    "type" : "int32"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "range",
+  "namespace" : "statistics",
+  "description" : "Calculates the range of a dataset",
+  "params" : [ {
+    "name" : "dataset",
+    "type" : {
+      "type" : "array",
+      "items" : "double"
+    }
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "distance-points",
+  "namespace" : "geometry",
+  "description" : "Calculates the distance between two points",
+  "params" : [ {
+    "name" : "a-x",
+    "type" : "double"
+  }, {
+    "name" : "a-y",
+    "type" : "double"
+  }, {
+    "name" : "b-x",
+    "type" : "double"
+  }, {
+    "name" : "b-y",
+    "type" : "double"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "parallelogram-area-1",
+  "namespace" : "area-shape",
+  "description" : "Calculates parallelogram area using base and height",
+  "params" : [ {
+    "min" : 0.0,
+    "name" : "base",
+    "type" : "double"
+  }, {
+    "min" : 0.0,
+    "name" : "height",
+    "type" : "double"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "circular-sector-area-1",
+  "namespace" : "area-shape",
+  "description" : "Calculates circular sector area using angle and radius",
+  "params" : [ {
+    "min" : 0.0,
+    "max" : 0.0,
+    "name" : "angle",
+    "type" : "double"
+  }, {
+    "min" : 0.0,
+    "name" : "radius",
+    "type" : "double"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "polygon-diagonals",
+  "namespace" : "geometry",
+  "description" : "Calculates the number of diagonals in a polygon",
+  "params" : [ {
+    "min" : 3.0,
+    "name" : "number-of-sides",
+    "type" : "int32"
+  } ],
+  "returnType" : "int32"
+}, {
+  "name" : "cycle-permutation",
+  "namespace" : "combinatorics",
+  "description" : "Calculates the cycle permutation of a number",
+  "params" : [ {
+    "min" : 0.0,
+    "name" : "num",
+    "type" : "int32"
+  } ],
+  "returnType" : "string"
+}, {
+  "name" : "circular-sector-area-2",
+  "namespace" : "area-shape",
+  "description" : "Calculates circular sector area using arc length and radius",
+  "params" : [ {
+    "min" : 0.0,
+    "name" : "arc-length",
+    "type" : "double"
+  }, {
+    "min" : 0.0,
+    "name" : "radius",
+    "type" : "double"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "inclination-line",
+  "namespace" : "geometry",
+  "description" : "Calculates the inclination angle of a line",
+  "params" : [ {
+    "name" : "a-x",
+    "type" : "double"
+  }, {
+    "name" : "a-y",
+    "type" : "double"
+  }, {
+    "name" : "b-x",
+    "type" : "double"
+  }, {
+    "name" : "b-y",
+    "type" : "double"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "min",
+  "namespace" : "statistics",
+  "description" : "Finds the minimum value in a dataset",
+  "params" : [ {
+    "name" : "dataset",
+    "type" : {
+      "type" : "array",
+      "items" : "double"
+    }
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "nth-root",
+  "namespace" : "basic-operations",
+  "description" : "Calculates the nth root of a number",
+  "params" : [ {
+    "name" : "radicand",
+    "type" : "double"
+  }, {
+    "min" : 1.0E-9,
+    "name" : "degree",
+    "type" : "double"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "prism-volume",
+  "namespace" : "volume",
+  "description" : "Calculates the volume of a prism",
+  "params" : [ {
+    "min" : 0.0,
+    "name" : "base-area",
+    "type" : "double"
+  }, {
+    "min" : 0.0,
+    "name" : "height",
+    "type" : "double"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "lcm",
+  "namespace" : "number-theory",
+  "description" : "Calculates the least common multiple of two numbers",
+  "params" : [ {
+    "name" : "x",
+    "type" : "int64"
+  }, {
+    "name" : "y",
+    "type" : "int64"
+  } ],
+  "returnType" : "int64"
+}, {
+  "name" : "rad-to-deg",
+  "namespace" : "geometry",
+  "description" : "Converts radians to degrees",
+  "params" : [ {
+    "name" : "radians",
+    "type" : "double"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "regular-pyramid-area",
+  "namespace" : "area-surface",
+  "description" : "Calculates regular pyramid surface area",
+  "params" : [ {
+    "min" : 0.0,
+    "name" : "base-side",
+    "type" : "double"
+  }, {
+    "min" : 3.0,
+    "name" : "number-of-base-sides",
+    "type" : "int32"
+  }, {
+    "min" : 0.0,
+    "name" : "height",
+    "type" : "double"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "simple-growth-rate",
+  "namespace" : "finance",
+  "description" : "Calculates the simple growth rate",
+  "params" : [ {
+    "name" : "initial",
+    "type" : "double"
+  }, {
+    "name" : "final",
+    "type" : "double"
+  }, {
+    "name" : "interval",
+    "type" : "double"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "n-percent-of-x",
+  "namespace" : "percentage",
+  "description" : "Calculates n percent of x",
+  "params" : [ {
+    "name" : "x",
+    "type" : "double"
+  }, {
+    "name" : "n",
+    "type" : "double"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "permutation",
+  "namespace" : "combinatorics",
+  "description" : "Calculates the permutation of a number",
+  "params" : [ {
+    "min" : 0.0,
+    "name" : "num",
+    "type" : "int32"
+  } ],
+  "returnType" : "string"
+}, {
+  "name" : "triangle-area-3",
+  "namespace" : "area-shape",
+  "description" : "Calculates triangle area using three sides (Heron's formula)",
+  "params" : [ {
+    "min" : 0.0,
+    "name" : "side-a",
+    "type" : "double"
+  }, {
+    "min" : 0.0,
+    "name" : "side-b",
+    "type" : "double"
+  }, {
+    "min" : 0.0,
+    "name" : "side-c",
+    "type" : "double"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "pyramid-area",
+  "namespace" : "area-surface",
+  "description" : "Calculates pyramid surface area",
+  "params" : [ {
+    "min" : 0.0,
+    "name" : "base-area",
+    "type" : "double"
+  }, {
+    "min" : 0.0,
+    "name" : "base-perimeter",
+    "type" : "double"
+  }, {
+    "min" : 0.0,
+    "name" : "slant-height",
+    "type" : "double"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "simple-growth",
+  "namespace" : "finance",
+  "description" : "Calculates simple growth",
+  "params" : [ {
+    "name" : "initial",
+    "type" : "double"
+  }, {
+    "name" : "rate",
+    "type" : "double"
+  }, {
+    "name" : "interval",
+    "type" : "double"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "side-triangle-law-of-cos",
+  "namespace" : "trigonometry",
+  "description" : "Calculates a triangle side using the Law of Cosines",
+  "params" : [ {
+    "min" : 0.0,
+    "name" : "side-a",
+    "type" : "double"
+  }, {
+    "min" : 0.0,
+    "name" : "side-b",
+    "type" : "double"
+  }, {
+    "min" : 0.0,
+    "max" : 0.0,
+    "name" : "opposite-ang",
+    "type" : "double"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "max",
+  "namespace" : "statistics",
+  "description" : "Finds the maximum value in a dataset",
+  "params" : [ {
+    "name" : "dataset",
+    "type" : {
+      "type" : "array",
+      "items" : "double"
+    }
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "round-to",
+  "namespace" : "basic-operations",
+  "description" : "Rounds a number to a specified number of decimal places",
+  "params" : [ {
+    "name" : "num",
+    "type" : "double"
+  }, {
+    "min" : 0.0,
+    "name" : "decimal-places",
+    "type" : "int32"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "trimmed-mean",
+  "namespace" : "statistics",
+  "description" : "Calculates the trimmed mean of a dataset, removing the given percentage of values from both the lower and upper ends before averaging",
+  "params" : [ {
+    "name" : "dataset",
+    "type" : {
+      "type" : "array",
+      "items" : "double"
+    }
+  }, {
+    "min" : 0.0,
+    "max" : 0.0,
+    "name" : "percentage",
+    "type" : "double"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "regular-prism-area",
+  "namespace" : "area-surface",
+  "description" : "Calculates regular prism surface area",
+  "params" : [ {
+    "min" : 0.0,
+    "name" : "base-side",
+    "type" : "double"
+  }, {
+    "min" : 3.0,
+    "name" : "number-of-base-sides",
+    "type" : "int32"
+  }, {
+    "min" : 0.0,
+    "name" : "height",
+    "type" : "double"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "slope-line",
+  "namespace" : "geometry",
+  "description" : "Calculates the slope of a line passing through two points",
+  "params" : [ {
+    "name" : "a-x",
+    "type" : "double"
+  }, {
+    "name" : "a-y",
+    "type" : "double"
+  }, {
+    "name" : "b-x",
+    "type" : "double"
+  }, {
+    "name" : "b-y",
+    "type" : "double"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "rectangle-area",
+  "namespace" : "area-shape",
+  "description" : "Calculates rectangle area",
+  "params" : [ {
+    "min" : 0.0,
+    "name" : "width",
+    "type" : "double"
+  }, {
+    "min" : 0.0,
+    "name" : "length",
+    "type" : "double"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "is-prime",
+  "namespace" : "number-theory",
+  "description" : "Checks if a number is a prime number",
+  "params" : [ {
+    "name" : "num",
+    "type" : "int64"
+  } ],
+  "returnType" : "boolean"
+}, {
+  "name" : "triangle-area-1",
+  "namespace" : "area-shape",
+  "description" : "Calculates triangle area using base and height",
+  "params" : [ {
+    "min" : 0.0,
+    "name" : "base",
+    "type" : "double"
+  }, {
+    "min" : 0.0,
+    "name" : "height",
+    "type" : "double"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "convex-polygon-sum-interior-angles",
+  "namespace" : "geometry",
+  "description" : "Calculates the sum of interior angles of a convex polygon",
+  "params" : [ {
+    "min" : 3.0,
+    "name" : "number-of-sides",
+    "type" : "double"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "triangle-area-2",
+  "namespace" : "area-shape",
+  "description" : "Calculates triangle area two sides and the angle between them",
+  "params" : [ {
+    "min" : 0.0,
+    "name" : "side-a",
+    "type" : "double"
+  }, {
+    "min" : 0.0,
+    "name" : "side-b",
+    "type" : "double"
+  }, {
+    "min" : 0.0,
+    "max" : 0.0,
+    "name" : "angle-between-a-and-b",
+    "type" : "double"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "geometric-mean",
+  "namespace" : "statistics",
+  "description" : "Calculates the geometric mean of a dataset",
+  "params" : [ {
+    "name" : "dataset",
+    "type" : {
+      "type" : "array",
+      "items" : "double"
+    }
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "cuboid-area",
+  "namespace" : "area-surface",
+  "description" : "Calculates cuboid surface area",
+  "params" : [ {
+    "min" : 0.0,
+    "name" : "width",
+    "type" : "double"
+  }, {
+    "min" : 0.0,
+    "name" : "length",
+    "type" : "double"
+  }, {
+    "min" : 0.0,
+    "name" : "height",
+    "type" : "double"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "regular-pyramid-volume",
+  "namespace" : "volume",
+  "description" : "Calculates the volume of a regular pyramid",
+  "params" : [ {
+    "min" : 0.0,
+    "name" : "base-side",
+    "type" : "double"
+  }, {
+    "min" : 3.0,
+    "name" : "number-of-base-sides",
+    "type" : "int32"
+  }, {
+    "min" : 0.0,
+    "name" : "height",
+    "type" : "double"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "parallelogram-area-2",
+  "namespace" : "area-shape",
+  "description" : "Calculates parallelogram area using two sides and the angle between them",
+  "params" : [ {
+    "min" : 0.0,
+    "name" : "side-a",
+    "type" : "double"
+  }, {
+    "min" : 0.0,
+    "name" : "side-b",
+    "type" : "double"
+  }, {
+    "min" : 0.0,
+    "max" : 0.0,
+    "name" : "angle-between-a-and-b",
+    "type" : "double"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "sphere-volume",
+  "namespace" : "volume",
+  "description" : "Calculates the volume of a sphere",
+  "params" : [ {
+    "min" : 0.0,
+    "name" : "radius",
+    "type" : "double"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "variance",
+  "namespace" : "statistics",
+  "description" : "Calculates the variance of a dataset",
+  "params" : [ {
+    "name" : "dataset",
+    "type" : {
+      "type" : "array",
+      "items" : "double"
+    }
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "mean",
+  "namespace" : "statistics",
+  "description" : "Calculates the arithmetic mean of a dataset",
+  "params" : [ {
+    "name" : "dataset",
+    "type" : {
+      "type" : "array",
+      "items" : "double"
+    }
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "circle-perimeter",
+  "namespace" : "geometry",
+  "description" : "Calculates the perimeter of a circle",
+  "params" : [ {
+    "min" : 0.0,
+    "name" : "radius",
+    "type" : "double"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "square-area",
+  "namespace" : "area-shape",
+  "description" : "Calculates square area",
+  "params" : [ {
+    "min" : 0.0,
+    "name" : "side",
+    "type" : "double"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "harmonic-mean",
+  "namespace" : "statistics",
+  "description" : "Calculates the harmonic mean of a dataset",
+  "params" : [ {
+    "name" : "dataset",
+    "type" : {
+      "type" : "array",
+      "items" : "double"
+    }
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "trapezoid-area",
+  "namespace" : "area-shape",
+  "description" : "Calculates trapezoid area",
+  "params" : [ {
+    "min" : 0.0,
+    "name" : "larger-base",
+    "type" : "double"
+  }, {
+    "min" : 0.0,
+    "name" : "smaller-base",
+    "type" : "double"
+  }, {
+    "min" : 0.0,
+    "name" : "height",
+    "type" : "double"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "gaussian-cdf",
+  "namespace" : "probability",
+  "description" : "Calculates the Gaussian Cumulative Distribution Function",
+  "params" : [ {
+    "name" : "mu",
+    "type" : "double"
+  }, {
+    "min" : 1.0E-9,
+    "name" : "std-dev",
+    "type" : "double"
+  }, {
+    "name" : "x",
+    "type" : "double"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "compound-growth",
+  "namespace" : "finance",
+  "description" : "Calculates compound growth",
+  "params" : [ {
+    "name" : "initial",
+    "type" : "double"
+  }, {
+    "name" : "rate",
+    "type" : "double"
+  }, {
+    "name" : "interval",
+    "type" : "double"
+  } ],
+  "returnType" : "double"
+}, {
+  "name" : "cone-area",
+  "namespace" : "area-surface",
+  "description" : "Calculates cone surface area",
+  "params" : [ {
+    "min" : 0.0,
+    "name" : "base-radius",
+    "type" : "double"
+  }, {
+    "min" : 0.0,
+    "name" : "height",
+    "type" : "double"
+  } ],
+  "returnType" : "double"
+} ]
