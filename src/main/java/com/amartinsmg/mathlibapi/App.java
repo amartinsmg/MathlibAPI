@@ -2,6 +2,7 @@ package com.amartinsmg.mathlibapi;
 
 import java.net.InetSocketAddress;
 import java.util.Map;
+import java.util.concurrent.Executors;
 
 import com.amartinsmg.mathlibapi.core.ApiCore;
 import com.amartinsmg.mathlibapi.core.exceptions.ApiException;
@@ -17,6 +18,8 @@ public class App {
         ApiCore core = new ApiCore(MathService.class);
 
         HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
+
+        server.setExecutor(Executors.newFixedThreadPool(200));
 
         server.createContext("/schema", exchange -> {
             new RouterHandler("GET", ex -> {
