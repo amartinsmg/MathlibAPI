@@ -1,13 +1,17 @@
-FROM eclipse-temurin:21-jdk as builder
-
-RUN apt-get update && apt-get install -y \
+# -----------------------------------------
+# Stage 1: build
+# -----------------------------------------
+    
+    FROM eclipse-temurin:21-jdk as builder
+    
+    RUN apt-get update && apt-get install -y \
     git \
     make \
     gcc \
     g++ \
     maven \
     && rm -rf /var/lib/apt/lists/*
-
+    
 WORKDIR /build
 
 COPY pom.xml .
@@ -15,8 +19,12 @@ COPY src ./src
 COPY scripts ./scripts
 
 RUN chmod +x scripts/setup-native.sh \
-    && bash scripts/setup-native.sh \
-    && mvn package -DskiptTests -q
+&& bash scripts/setup-native.sh \
+&& mvn package -DskiptTests -q
+
+# -----------------------------------------
+# Stage 2: runtime
+# -----------------------------------------
 
 FROM eclipse-temurin:21-jre
 
