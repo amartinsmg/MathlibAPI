@@ -35,6 +35,10 @@ MathLib API wraps a native C shared library (`.so`) and exposes its functions ov
 
 ## Requirements
 
+### Docker (recommended)
+- Docker
+
+### Local
 - Java 21+
 - Maven 3.6+
 - GCC and Make (to compile the native C library)
@@ -43,6 +47,15 @@ MathLib API wraps a native C shared library (`.so`) and exposes its functions ov
 ---
 
 ## Building & Running
+
+### Docker (recommended)
+
+```bash
+docker build -t mathlib-api .
+docker run -p 8000:8000 mathlib-api
+```
+
+### Local
 
 **First time setup** — clones and compiles the native C library:
 
